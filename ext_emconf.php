@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext: "metaext"
 #
-# Auto generated 15-03-2009 19:52
+# Auto generated 15-03-2009 20:58
 #
 # Manual updates:
 # Only the data in the array - anything else is removed by next write.
@@ -29,7 +29,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 1,
 	'lockType' => '',
 	'author_company' => 'sensomedia.de',
-	'version' => '0.2.1',
+	'version' => '0.2.2',
 	'constraints' => array(
 		'depends' => array(
 			'typo3' => '4.2.0-0.0.0',
