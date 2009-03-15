@@ -1,0 +1,34 @@
+# cat=basic/enable; type=boolean; label=Extend Constant Editor:If enabled, the 'class.t3lib_tsparser_ext' will be xclassed to add some more subcategories which helps to arrange the editable options. no 'class.t3lib_tsparser_ext' function will actually be overwritten so this should be uncritical for the future. If you don't install this patch, all entries with extended subcategories will be grouped under the default subcategory 'Others', so this is only a cosmetic though recommended patch.
+extconsteditor = 1
+
+# cat=basic/enable; type=boolean; label=Patch 6637:If enabled, the 'class.tslib_menu' will be xclassed to apply patch6637 (see: http://bugs.typo3.org/view.php?id=6637), which will give you a 'reverseOrder' for hmenu special = rootline. without applying this patch (or patching the core file itself) the reverse rootline titletag feature won't work. NOTE: This patch becomes obsolete for Typo3 >= 4.3 as this functionality will be incorporated with this version. 
+patch6637 = 0
+
+# cat=basic/enable; type=boolean; label=disableNoCacheParameter:This turns off the ability to disable caching on several locations. On the page cahing policies, via setting config.no_cache = true or disabling caching inside extensions via set_no_cache(). All these settings will be ignored then. 
+disableNoCacheParameter = 0
+
+# cat=basic/chtml; type=boolean; label=Post Processing:Enable the output post processor which can fulfill various tsks like: removing html comments, indenting code, etc.
+postprocessing = 1
+
+# cat=basic/chtml; type=boolean; label=remove ALL html comments:If post processing is enabled, this feature will remove ALL html comments.
+removehtmlcomments = 0
+
+# cat=basic/chtml; type=boolean; label=remove blank lines:If post processing is enabled, this feature will remove lines wihout content, i.e. only linefeed or whitespace. 
+removeblanklines = 1
+
+# cat=basic/chtml; type=boolean; label=remove whitespace:If post processing is enabled, this feature will remove the surrounding whitespace, i.e. tab & space characters. 
+removewhitespace = 1
+
+# cat=basic/chtml; type=boolean; label=sort headertags:If post processing is enabled, this feature will sort all the tags in the header so that the more important tags are on top. sorting follows this priority 'base > title > meta > link > style > script'. NOTE: any other tag will get removed though. if this is not ok with you, please leave this feature disabled. 
+sortheadertags = 1
+
+
+# cat=basic/chtml; type=boolean; label=indentation:If post processing is enabled, this feature will remove surrounding whitespace and formats the output with a not too complex but nice indentation.. 
+indentation = 1
+
+# cat=basic/chtml; type=boolean; label=indent curly braces:If indentation is enabled, usually curly braces used in javascript or css class content will also be indented. just for the worstcase that indenting curly braces gives you trouble, here you can switch this off
+indentcurlybraces = 1
+
+# cat=basic/chtml; type=options[tab=0,2 spaces=1,4 spaces=2,6 spaces=3]; label=indentation character:If indentation is enabled, this is the character used for indentation. chose either the 'tab' character or 2,4, or 6 'space' characters.
+indentationchar = 0
+
