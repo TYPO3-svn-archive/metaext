@@ -10,6 +10,9 @@ disableNoCacheParameter = 0
 # cat=basic/chtml; type=boolean; label=Post Processing:Enable the output post processor which can fulfill various tsks like: removing html comments, indenting code, etc.
 postprocessing = 1
 
+# cat=basic/chtml; type=boolean; label=Unicode Processing:This switches on the Unicode flag in the case you are using UTF-8 content and only get a white page as result.
+processunicode = 0
+
 # cat=basic/chtml; type=boolean; label=remove ALL html comments:If post processing is enabled, this feature will remove ALL html comments.
 removehtmlcomments = 0
 
