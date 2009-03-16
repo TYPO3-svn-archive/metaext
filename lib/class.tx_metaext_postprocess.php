@@ -44,6 +44,7 @@ class tx_metaext_postprocess {
 		### get EM config
 		$conf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['metaext']);
 
+		$u = $conf['processunicode'] ? 'u':'';
 
 		### horizontal cleaning #############################################################
 		#####################################################################################
@@ -56,29 +57,29 @@ class tx_metaext_postprocess {
 			$resultstring = "";
 			foreach($matches[0] as $idx => $matcharray) {
 				$prestring = substr($pObj->content, $startpos, (int)$matcharray[1]-$startpos);
-				$prestring = preg_replace( "/<!--(.*?)-->/ismu", "", $prestring);
+				$prestring = preg_replace( "/<!--(.*?)-->/ism".$u, "", $prestring);
 				$resultstring .= $prestring . $matcharray[0] . "\n";
 				$startpos = (int)$matcharray[1] + strlen($matcharray[0]) + 1;
 			}
 			$prestring = substr($pObj->content, $startpos, strlen($pObj->content)- $startpos);
-			$resultstring .= preg_replace( "/<!--(.*?)-->/ismu", "", $prestring);
+			$resultstring .= preg_replace( "/<!--(.*?)-->/ism".$u, "", $prestring);
 			$pObj->content = $resultstring . "\n";
 		}
 
 		# always a linebreak before </head>, </body>, </html>
-		$re_find[] = "/([^\n])(<\/head|<\/body|<\/html)/iu";
+		$re_find[] = "/([^\n])(<\/head|<\/body|<\/html)/i".$u;
 		$re_replace[] = "$1\n$2";
 		# always a linebreak after <head>, <body>, <html>
-		$re_find[] = "/(<head[^>]*?>|<body[^>]*?>|<html[^>]*?>)([^\n])/iu";
+		$re_find[] = "/(<head[^>]*?>|<body[^>]*?>|<html[^>]*?>)([^\n])/i".$u;
 		$re_replace[] = "$1\n$2";
 		# no linebreak before some ending tags
-		$re_find[] = "/(\S)(\s*?)(<\/p>)/siu";
+		$re_find[] = "/(\S)(\s*?)(<\/p>)/si".$u;
 		$re_replace[] = "$1$3";
 
 		# get everything between the head tag and the outer parts ofcourse
 		if ($conf['sortheadertags']){
 			$matches = '';
-			preg_match( "/<head>\s*(.+?)\s*<\/head>/isu", $pObj->content, $matches, PREG_OFFSET_CAPTURE );
+			preg_match( "/<head>\s*(.+?)\s*<\/head>/is".$u, $pObj->content, $matches, PREG_OFFSET_CAPTURE );
 			$headstart = (int)$matches[1][1];
 			$headcontent = $matches[1][0];
 			$prehead = substr($pObj->content, 0, $headstart);
@@ -87,7 +88,7 @@ class tx_metaext_postprocess {
 			# split the header tags apart
 			$headarray = array('base'=>'','title'=>'','meta'=>'','link'=>'','style'=>'','script'=>'');
 			$matches = '';
-			preg_match_all( "/<(base|title|meta|link|style|script).*?\/(|base|title|meta|link|style|script)>/ius", $headcontent, $matches);
+			preg_match_all( "/<(base|title|meta|link|style|script).*?\/(|base|title|meta|link|style|script)>/is".$u, $headcontent, $matches);
 			$headerline = $matches[0];
 			$headertag = $matches[1];
 			
@@ -105,7 +106,7 @@ class tx_metaext_postprocess {
 
 		# remove blank lines
 		if ($conf['removeblanklines'] ){
-			$re_find[] = "/\s*\n/u";
+			$re_find[] = "/\s*\n/".$u;
 			$re_replace[] = "\n";
 		}
 		# do all the above configured replacements 
@@ -113,17 +114,17 @@ class tx_metaext_postprocess {
 
 		# remove leading tabs/whitespace but spare them within textareas
 		if ($conf['indentation'] || $conf['removewhitespace']){
-			preg_match_all( "/<(textarea).+?<\/(textarea)>/isu", $pObj->content, $matches, PREG_OFFSET_CAPTURE );
+			preg_match_all( "/<(textarea).+?<\/(textarea)>/is".$u, $pObj->content, $matches, PREG_OFFSET_CAPTURE );
 			$startpos = 0;
 			$resultstring = "";
 			foreach($matches[0] as $idx => $matcharray) {
 				$prestring = substr($pObj->content, $startpos, (int)$matcharray[1]-$startpos);
-				$prestring = preg_replace( "/^[ |\t]+/mu", "", $prestring);
+				$prestring = preg_replace( "/^[ |\t]+/m".$u, "", $prestring);
 				$resultstring .= $prestring . $matcharray[0] . "\n";
 				$startpos = (int)$matcharray[1] + strlen($matcharray[0]) + 1;
 			}
 			$prestring = substr($pObj->content, $startpos, strlen($pObj->content)- $startpos);
-			$resultstring .= preg_replace( "/^[ |\t]+/mu", "", $prestring);
+			$resultstring .= preg_replace( "/^[ |\t]+/m".$u, "", $prestring);
 			$pObj->content = $resultstring . "\n";
 		}
 
@@ -146,7 +147,7 @@ class tx_metaext_postprocess {
 			# line indentation algorythm ----------------------------------------------------
 			
 			# indentlevel -1 if: a closing div,ul,head,body tag is found at rowstart [or] a closing curlybrace is found at rowstart
-			if ( preg_match( "/^(<\/div|<\/ul|<\/head|<\/body)/iu", $row) || ($conf['indentcurlybraces'] && preg_match( "/^( |\t)*\}{1}/ui", $row)) ) { $tabstops--; }
+			if ( preg_match( "/^(<\/div|<\/ul|<\/head|<\/body)/i".$u, $row) || ($conf['indentcurlybraces'] && preg_match( "/^( |\t)*\}{1}/i".$u, $row)) ) { $tabstops--; }
 
 			# do indentation here
 			if ($doindent ) {
@@ -156,13 +157,13 @@ class tx_metaext_postprocess {
 			}
 			
 			# no indentation on the following lines if: a <textarea> is found
-			if ( preg_match( "/(<textarea)/iu", $row)) $doindent = 0;
+			if ( preg_match( "/(<textarea)/i".$u, $row)) $doindent = 0;
 			
 			# indentation on the following lines if: a </textarea> is found
-			if ( preg_match( "/(<\/textarea)/iu", $row)) $doindent = 1;
+			if ( preg_match( "/(<\/textarea)/i".$u, $row)) $doindent = 1;
 
 			# indentlevel +1 if: an opening div is found at rowstart and row doesn't end with a closing div [or] an opening ul,head,body tag is found at rowstart [or] an opening curlybrace is found at rowend
-			if ( (preg_match( "/^<div[^>]*?>.*?/iu", $row) && !preg_match( "/<\/div>$/iu", $row)) || preg_match( "/^(<ul|<head|<body)/iu", $row) || ($conf['indentcurlybraces'] && preg_match( "/\{{1}( |\t)*$/ui", $row)) ) { $tabstops++; }
+			if ( (preg_match( "/^<div[^>]*?>.*?/i".$u, $row) && !preg_match( "/<\/div>$/i".$u, $row)) || preg_match( "/^(<ul|<head|<body)/i".$u, $row) || ($conf['indentcurlybraces'] && preg_match( "/\{{1}( |\t)*$/i".$u, $row)) ) { $tabstops++; }
 
 			$indented[] = $indented_line;
 		}
