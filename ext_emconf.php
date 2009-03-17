@@ -11,7 +11,7 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Config, Metatag & SEO Features',
+	'title' => 'Config, Metatags & SEO Features',
 	'description' => 'This extension provides you with an editable set of all the important \'config\' parameters including multilanguage settings, adds additional metatag fields to the page module and provides global settings for some of them (those who make sense to be filled globaly). It also comes with a configurable html post processor which is able to remove html comments (if not inside script/style tag) & redundant whitespace, making a nice indentation and even reorder the tags within the html header (eg. pushing title & metatags on top).',
 	'category' => 'be',
 	'author' => '\'Iggy\' - sensomedia.de',
