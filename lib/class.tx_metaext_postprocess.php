@@ -62,7 +62,7 @@ class tx_metaext_postprocess {
 			foreach($tmpmatches as $idx => $pos) { 
 				$matches[] = array( '0' => $matchesunsorted[$idx][0], '1' => $pos );
 			}
-			debug($matches);
+			# removing all the html comments in the save areas
 			$startpos = 0;
 			$resultstring = "";
 			foreach($matches as $idx => $matcharray) {
