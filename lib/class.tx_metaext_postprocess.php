@@ -62,13 +62,14 @@ class tx_metaext_postprocess {
 			foreach($tmpmatches as $idx => $pos) { 
 				$matches[] = array( '0' => $matchesunsorted[$idx][0], '1' => $pos );
 			}
+			debug($matches);
 			$startpos = 0;
 			$resultstring = "";
 			foreach($matches as $idx => $matcharray) {
 				$prestring = substr($pObj->content, $startpos, (int)$matcharray[1]-$startpos);
 				$prestring = preg_replace( "/<!--(.*?)-->/ism".$u, "", $prestring);
 				$resultstring .= $prestring . $matcharray[0] . "\n";
-				$startpos = (int)$matcharray[1] + strlen($matcharray[0]) + 1;
+				$startpos = (int)$matcharray[1] + strlen($matcharray[0]) ;
 			}
 			$prestring = substr($pObj->content, $startpos, strlen($pObj->content)- $startpos);
 			$resultstring .= preg_replace( "/<!--(.*?)-->/ism".$u, "", $prestring);
