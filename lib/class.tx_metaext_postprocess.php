@@ -51,11 +51,20 @@ class tx_metaext_postprocess {
 
 		# remove html comments... but not inside script tags ;)
 		if ($conf['removehtmlcomments']){
-
-			preg_match_all( "/<(scrip|style).+?<\/(script|style)>/isu", $pObj->content, $matches, PREG_OFFSET_CAPTURE );
+			
+			preg_match_all( "/<!--TYPO3SEARCH_(begin|end)-->/isu", $pObj->content, $matches_1, PREG_OFFSET_CAPTURE );
+			preg_match_all( "/<(scrip|style).+?<\/(script|style)>/isu", $pObj->content, $matches_2, PREG_OFFSET_CAPTURE );
+			$matchesunsorted = array_merge_recursive($matches_1[0],$matches_2[0]);
+			$tmpmatches=array();
+			# sort the array of matches for the starting position of each item which is $matchesunsorted[][1] 
+			foreach($matchesunsorted as $idx => $founditems) { $tmpmatches[$idx]=$founditems[1]; }
+			asort( $tmpmatches, SORT_NUMERIC );
+			foreach($tmpmatches as $idx => $pos) { 
+				$matches[] = array( '0' => $matchesunsorted[$idx][0], '1' => $pos );
+			}
 			$startpos = 0;
 			$resultstring = "";
-			foreach($matches[0] as $idx => $matcharray) {
+			foreach($matches as $idx => $matcharray) {
 				$prestring = substr($pObj->content, $startpos, (int)$matcharray[1]-$startpos);
 				$prestring = preg_replace( "/<!--(.*?)-->/ism".$u, "", $prestring);
 				$resultstring .= $prestring . $matcharray[0] . "\n";
