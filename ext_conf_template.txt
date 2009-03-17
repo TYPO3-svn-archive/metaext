@@ -13,7 +13,7 @@ postprocessing = 1
 # cat=basic/chtml; type=boolean; label=Unicode Processing:This switches on the Unicode flag in the case you are using UTF-8 content and only get a white page as result.
 processunicode = 0
 
-# cat=basic/chtml; type=boolean; label=remove ALL html comments:If post processing is enabled, this feature will remove ALL html comments.
+# cat=basic/chtml; type=boolean; label=remove ALL html comments:If post processing is enabled, this feature will remove ALL html comments (<!--TYPO3SEARCH_start/end--> and comments inside <script/style> tags will be spared, though).
 removehtmlcomments = 0
 
 # cat=basic/chtml; type=boolean; label=remove blank lines:If post processing is enabled, this feature will remove lines wihout content, i.e. only linefeed or whitespace. 
@@ -22,7 +22,7 @@ removeblanklines = 1
 # cat=basic/chtml; type=boolean; label=remove whitespace:If post processing is enabled, this feature will remove the surrounding whitespace, i.e. tab & space characters. 
 removewhitespace = 1
 
-# cat=basic/chtml; type=boolean; label=sort headertags:If post processing is enabled, this feature will sort all the tags in the header so that the more important tags are on top. sorting follows this priority 'base > title > meta > link > style > script'. NOTE: any other tag will get removed though. if this is not ok with you, please leave this feature disabled. 
+# cat=basic/chtml; type=boolean; label=sort headertags:If post processing is enabled, this feature will sort all the tags in the header so that the more important tags are on top. sorting follows this priority 'base > title > meta > link > style > script'. NOTE: ANY OTHER CONTENT will get REMOVED though. if this is not ok with you, please leave this feature disabled. 
 sortheadertags = 1
 
 
