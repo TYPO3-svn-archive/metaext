@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext: "metaext"
 #
-# Auto generated 16-03-2009 12:06
+# Auto generated 18-03-2009 15:25
 #
 # Manual updates:
 # Only the data in the array - anything else is removed by next write.
@@ -29,7 +29,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 1,
 	'lockType' => '',
 	'author_company' => 'sensomedia.de',
-	'version' => '0.2.4',
+	'version' => '0.2.5',
 	'constraints' => array(
 		'depends' => array(
 			'typo3' => '4.2.0-0.0.0',
@@ -39,7 +39,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'suggests' => array(
 		),
 	),
-	'_md5_values_when_last_written' => 'a:18:{s:9:".htaccess";s:4:"cad3";s:9:"ChangeLog";s:4:"c829";s:10:"README.txt";s:4:"ee2d";s:21:"ext_conf_template.txt";s:4:"c2d7";s:12:"ext_icon.gif";s:4:"76f6";s:17:"ext_localconf.php";s:4:"d170";s:14:"ext_tables.php";s:4:"7426";s:14:"ext_tables.sql";s:4:"feba";s:16:"locallang_db.xml";s:4:"a428";s:14:"doc/manual.sxw";s:4:"ba91";s:36:"lib/class.tx_metaext_postprocess.php";s:4:"3244";s:35:"lib/class.ux_t3lib_tsparser_ext.php";s:4:"2442";s:27:"lib/class.ux_tslib_menu.php";s:4:"e650";s:38:"modfunc1/class.tx_metaext_modfunc1.php";s:4:"932f";s:22:"modfunc1/locallang.xml";s:4:"a40c";s:20:"static/constants.txt";s:4:"037f";s:13:"static/lib.ts";s:4:"8e2e";s:16:"static/setup.txt";s:4:"613e";}',
+	'_md5_values_when_last_written' => 'a:18:{s:9:".htaccess";s:4:"cad3";s:9:"ChangeLog";s:4:"c829";s:10:"README.txt";s:4:"ee2d";s:21:"ext_conf_template.txt";s:4:"ae14";s:12:"ext_icon.gif";s:4:"76f6";s:17:"ext_localconf.php";s:4:"d170";s:14:"ext_tables.php";s:4:"7426";s:14:"ext_tables.sql";s:4:"feba";s:16:"locallang_db.xml";s:4:"a428";s:14:"doc/manual.sxw";s:4:"aef2";s:36:"lib/class.tx_metaext_postprocess.php";s:4:"0261";s:35:"lib/class.ux_t3lib_tsparser_ext.php";s:4:"2442";s:27:"lib/class.ux_tslib_menu.php";s:4:"e650";s:38:"modfunc1/class.tx_metaext_modfunc1.php";s:4:"932f";s:22:"modfunc1/locallang.xml";s:4:"a40c";s:20:"static/constants.txt";s:4:"037f";s:13:"static/lib.ts";s:4:"8e2e";s:16:"static/setup.txt";s:4:"613e";}',
 	'suggests' => array(
 	),
 );
