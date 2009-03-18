@@ -1,3 +1,8 @@
 2009-03-09 sensomedia.de  <info@sensomedia.de>
 
 	* initial code generated with kickstarter
+
+* 0.2.5: - Small improvements to the post processor (sparing !--TYPO3SEARCH_start/end-- tags now if remove all html comments is selected and post processing turned on). - Updated manual.
+* 0.2.4: Important Bugfix: introducing unicode switch for postprocessing in EM config. if using non unicode content with unicode flag only a white page might get delivered.
+* 0.2.3: wrong manual got uploaded with the last version. now this is the right one.
+* 0.2.2: initial ter
