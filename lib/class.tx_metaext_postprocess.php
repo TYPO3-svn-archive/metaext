@@ -68,7 +68,17 @@ class tx_metaext_postprocess {
 			foreach($matches as $idx => $matcharray) {
 				$prestring = substr($pObj->content, $startpos, (int)$matcharray[1]-$startpos);
 				$prestring = preg_replace( "/<!--(.*?)-->/ism".$u, "", $prestring);
-				$resultstring .= $prestring . $matcharray[0] . "\n";
+				# remove only the comment tags (inside cdata tags to prevent these very very old browsers 
+				# from displaying inline styles and script content) not the content of the 'comment' inside script and style.
+				# these comment tags aren't really necessary anymore and only make the gecko engine ranting about invalid selectors. 
+				# 
+				# look for whitespace around <!-- and -->, to make sure it isn't the TYPOSEARCH comment, which has to be left alone
+				if ($conf['removetagsinsidescript']){
+					$cleanedmatch = preg_replace( "/(<!--[ |\n]+|[\/]+ -->[ |\n]+)/ism".$u, "", $matcharray[0]);
+				} else {
+					$cleanedmatch = $matcharray[0];
+				}
+				$resultstring .= $prestring . $cleanedmatch . "\n";
 				$startpos = (int)$matcharray[1] + strlen($matcharray[0]) ;
 			}
 			$prestring = substr($pObj->content, $startpos, strlen($pObj->content)- $startpos);
