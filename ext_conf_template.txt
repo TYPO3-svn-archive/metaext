@@ -16,6 +16,9 @@ processunicode = 0
 # cat=basic/chtml; type=boolean; label=remove ALL html comments:If post processing is enabled, this feature will remove ALL html comments (<!--TYPO3SEARCH_start/end--> and comments inside <script/style> tags will be spared, though).
 removehtmlcomments = 0
 
+# cat=basic/chtml; type=boolean; label=remove comment tags within cdata:If some extension produces additional comment tags inside cdata markings like so: '/*<![CDATA[*/ <!--  .... // --> /*]]>*/' the '<!--' and '// -->' part will get removed if this option is selected. The point is if they remain within style tags, the gecko engine is moaning about invalid selectors which is actually not an error but an avoidable warning. the flipside would be that if you turn this feature on, really very old browser might display the content of inline script and style tags, because they're not able to interprete these. if you have concerns about this or you don't encounter these sort of cdata + htmlcomment in your code, you might simply leave this feature unselected. this feature is only active if the 'remove all html comments' feature is also activated, anyway.
+removetagsinsidescript = 1
+
 # cat=basic/chtml; type=boolean; label=remove blank lines:If post processing is enabled, this feature will remove lines wihout content, i.e. only linefeed or whitespace. 
 removeblanklines = 1
 
