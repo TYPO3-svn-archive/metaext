@@ -53,7 +53,7 @@ class tx_metaext_postprocess {
 		if ($conf['removehtmlcomments']){
 			
 			preg_match_all( "/<!--TYPO3SEARCH_(begin|end)-->/isu", $pObj->content, $matches_1, PREG_OFFSET_CAPTURE );
-			preg_match_all( "/<(scrip|style).+?<\/(script|style)>/isu", $pObj->content, $matches_2, PREG_OFFSET_CAPTURE );
+			preg_match_all( "/<(!--\[|scri|styl).+?<(\]--|\/script|\/style)>/isu", $pObj->content, $matches_2, PREG_OFFSET_CAPTURE );
 			$matchesunsorted = array_merge_recursive($matches_1[0],$matches_2[0]);
 			$tmpmatches=array();
 			# sort the array of matches for the starting position of each item which is $matchesunsorted[][1] 
@@ -106,13 +106,22 @@ class tx_metaext_postprocess {
 			$posthead = substr($pObj->content, $headstart+strlen($headcontent), strlen($pObj->content)-$headstart);
 			
 			# split the header tags apart
-			$headarray = array('base'=>'','title'=>'','meta'=>'','link'=>'','style'=>'','script'=>'');
+			$headarray = array(
+				'base'	=>	'',
+				'title'	=>	'',
+				'meta'	=>	'',
+				'link'	=>	'',
+				'style'	=>	'',
+				'script'=>	'',
+				'!--['	=>	''
+			);
 			$matches = '';
-			preg_match_all( "/<(base|title|meta|link|style|script).*?\/(|base|title|meta|link|style|script)>/is".$u, $headcontent, $matches);
+			preg_match_all( "/<(!--\[|base|title|meta|link|style|script).*?(\]--|\/|\/base|\/title|\/meta|\/link|\/style|\/script)>/is".$u, $headcontent, $matches);
+			
 			$headerline = $matches[0];
 			$headertag = $matches[1];
 			
-			# and sort them following this priority -> base|title|meta|link|style|script
+			# and sort them following this priority -> base|title|meta|link|style|script|!--[ (conditional comments)
 			foreach ($headerline as $idx => $line ) {
 				$headarray[$headertag[$idx]][] = $line;
 			}		
