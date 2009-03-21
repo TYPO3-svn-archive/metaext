@@ -150,7 +150,7 @@ class tx_metaext_postprocess {
 				$prestring = substr($pObj->content, $startpos, (int)$matcharray[1]-$startpos);
 				$prestring = preg_replace( "/^[ |\t]+/m".$u, "", $prestring);
 				$resultstring .= $prestring . $matcharray[0] . "\n";
-				$startpos = (int)$matcharray[1] + strlen($matcharray[0]) + 1;
+				$startpos = (int)$matcharray[1] + strlen($matcharray[0]);
 			}
 			$prestring = substr($pObj->content, $startpos, strlen($pObj->content)- $startpos);
 			$resultstring .= preg_replace( "/^[ |\t]+/m".$u, "", $prestring);
