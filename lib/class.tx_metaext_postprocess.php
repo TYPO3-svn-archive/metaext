@@ -96,6 +96,7 @@ class tx_metaext_postprocess {
 		$re_find[] = "/(\S)(\s*?)(<\/p>)/si".$u;
 		$re_replace[] = "$1$3";
 
+
 		# get everything between the head tag and the outer parts ofcourse
 		if ($conf['sortheadertags']){
 			$matches = '';
@@ -128,9 +129,29 @@ class tx_metaext_postprocess {
 			$headcontent = "";
 			foreach( $headarray as $tag => $tagcontent ) {
 				if($tagcontent) $headcontent .= implode("\n",$tagcontent)."\n";
-			}	
+			}
 			# and glue them together again		
 			$pObj->content = $prehead . $headcontent . $posthead;
+		}
+		
+		# reinject the copyright notice if it has been removed by sortheadertags/removehtmlcomments
+		if ($conf['copyrightcomment'] && ($conf['sortheadertags'] || $conf['removehtmlcomments']) ){
+			$copyrightnotice =	'
+			<!--
+				This website is brought to you by TYPO3 - get.content.right
+				TYPO3 is a free open source Content Management Framework created by Kasper Skaarhoj and licensed under GNU/GPL.
+				TYPO3 is copyright 1998-2005 of Kasper Skaarhoj. Extensions are copyright of their respective owners.
+				Information and contribution at http://www.typo3.com
+			-->';
+			$matches = '';
+			preg_match( "/<head>\s*(.+?)\s*<\/head>/is".$u, $pObj->content, $matches, PREG_OFFSET_CAPTURE );
+			$headstart = (int)$matches[1][1];
+			# dismember the header content and the surrounding parts
+			$headcontent = $matches[1][0];
+			$prehead = substr($pObj->content, 0, $headstart);
+			$posthead = substr($pObj->content, $headstart+strlen($headcontent), strlen($pObj->content)-$headstart);
+			# and inject the copyright notification into it		
+			$pObj->content = $prehead . $headcontent . $copyrightnotice . $posthead;
 		}
 
 		# remove blank lines
