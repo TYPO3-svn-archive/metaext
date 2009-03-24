@@ -25,10 +25,11 @@
 /**
  * various levels of (x)html content cleaning for post processing hook
  *
- * @author	Michael Rudolph - sensomedia.de <info@sensomedia.de>
- * @package	typo3
+ * @author	Michael 'Iggy' Rudolph <info@sensomedia.de>
+ * @package	TYPO3
  * @subpackage	tx_metaext
  */
+ 
 class tx_metaext_postprocess {
 
 	/**
