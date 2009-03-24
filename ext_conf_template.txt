@@ -13,8 +13,11 @@ postprocessing = 1
 # cat=basic/chtml; type=boolean; label=Unicode Processing:This switches on the Unicode flag in the case you are using UTF-8 content and only get a white page as result.
 processunicode = 0
 
-# cat=basic/chtml; type=boolean; label=remove ALL html comments:If post processing is enabled, this feature will remove ALL html comments (<!--TYPO3SEARCH_start/end--> and comments inside <script/style> tags will be spared, though).
+# cat=basic/chtml; type=boolean; label=remove ALL html comments:If post processing is enabled, this feature will remove ALL html comments (<!--TYPO3SEARCH_start/end--> and comments inside <script/style> tags and conditional comments will be spared, though).
 removehtmlcomments = 0
+
+# cat=basic/chtml; type=boolean; label=maintain the copyright comment:It is encouradged to leave this option enabled to maintain the injection of the '... This website is brought to you by TYPO3 ...' comment in the head section of your created pagecontent. even though it is not needed for maintaining the copyright laws, it is highly encouradged and a friendly turn to place this notice within the header. both, the sorting header tags and the remove ALL html comments options do remove these lines. if you leave this option enabled, the comment will get reinjected in any case.
+copyrightcomment = 1
 
 # cat=basic/chtml; type=boolean; label=remove comment tags within cdata:If some extension produces additional comment tags inside cdata markings like so: '/*<![CDATA[*/ <!--  .... // --> /*]]>*/' the '<!--' and '// -->' part will get removed if this option is selected. The point is if they remain within style tags, the gecko engine is moaning about invalid selectors which is actually not an error but an avoidable warning. the flipside would be that if you turn this feature on, really very old browser might display the content of inline script and style tags, because they're not able to interprete these. if you have concerns about this or you don't encounter these sort of cdata + htmlcomment in your code, you might simply leave this feature unselected. this feature is only active if the 'remove all html comments' feature is also activated, anyway.
 removetagsinsidescript = 1
