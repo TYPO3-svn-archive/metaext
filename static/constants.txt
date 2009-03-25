@@ -52,7 +52,7 @@ simulateStaticDocuments = 0
 #cat=Site Config/urlmgm/a2; type=options[no title=0,unlimited=1,2,3,4,5,6,8,10,12,15,18,21,25,30,35,40,50,75]; label=SimStaticDocs Add Title:If not zero, TYPO3 generates urls with the title in. select the number of chars the title is limited to.
 simulateStaticDocuments_addTitle = 0
 
-#cat=Site Config/urlmgm/3; type=options[Real URL OFF=0,Real URL ON=1]; label=Real URL:Turns RealURL on/off. If you use this, make sure, 'simulateStaticDocuments' is turned to off, because they would interfere with each other.
+#cat=Site Config/urlmgm/a3; type=options[Real URL OFF=0,Real URL ON=1]; label=Real URL:Turns RealURL on/off. If you use this, make sure, 'simulateStaticDocuments' is turned to off, because they would interfere with each other.
 tx_realurl_enable = 0
 
 #cat=Site Config/urlmgm/a4; type=options[CoolURI OFF=0,CoolURI ON=1]; label=CoolURI:Turns CoolURI on/off. Turns RealURL on/off. If you use this, make sure, 'simulateStaticDocuments' is turned to off, because they would interfere with each other.
@@ -149,6 +149,48 @@ showdate = 0
  
 # cat=metatags/meta/c8; type=string; label= META v1-verification: If you've got a google v1-verification tag, this is the place to enter the hash eg.:PCiRPCiR4tHR4ss4jTZd8E4jDjEJd39dDhE80iiE= .
 v1verification = 
+
+#--------------------------------------------------------
+
+
+}
+
+
+
+
+
+
+plugin.tx_metaext_sitemap {
+
+#--------------------------------------------------------
+
+#cat=Sitemap (XML)/sitemap/a1; type=int+; label= Sitemap typeNum: This is the default typeNum for the 'plugin.tx_metaext_sitemap'. This corresponds to typenum you need to enter in sitemaplist (if you change the default over there) of the plugins EM settings. If you've left the default sitemap setting in the EM, you can leave this setting alone.
+typenum = 2755
+
+#cat=Sitemap (XML)/sitemap/a2; type=options[NO=0,include=1]; label= Include 'hidden in menu' pages: This is the default setting for how to deal with pages marked as 'hidden in menu'. defaults to NOT include them into sitemap generation.
+showhiddeninmenu = 0
+
+#cat=Sitemap (XML)/sitemap/a3; type=options[NO=0,include=1]; label= Include 'hidden' pages: This is the default setting for how to deal with pages marked as 'hidden'. defaults to NOT include them into sitemap generation.
+showhiddenpages = 0
+
+#cat=Sitemap (XML)/sitemap/a4; type=options[dont include=0,INCLUDE=1]; label= Include 'no index' pages: This is the default setting for how to deal with pages marked as 'do not index'. by default they are INCLUDED into sitemap generation.
+showsearchexcluded = 1
+
+#cat=Sitemap (XML)/sitemap/a5; type=options[dont exclude=0,EXCLUDE=1]; label= exclude if robots setting sugests: If the page specific robots settings suggests not to index (would be <meta="robots" value="noindex,..."/>) then these pages are also been excluded from the sitemap generation. defaults to EXCLUDE pages with noindex robots settings on page records.
+excludeifrobots	= 1
+
+#cat=Sitemap (XML)/sitemap/a6; type=options[dont exclude=0,EXCLUDE=1]; label= exclude 'shortcut' pages: This is the default setting for how to deal with 'shortcut' pages. As shortcut pages do not have a dedicated url (the same as the page they refer to) they just produce an unnecessary double <url> tag, so this setting defaults to EXCLUDE shortcut pages. 
+excludeshortcuts = 1
+
+#cat=Sitemap (XML)/sitemap/a7; type=int; label= startingpoint UID: If you don't want the default sitemap to start on the domains rootlevel, enter a specific page uid here.
+startuid = 0
+
+#cat=Sitemap (XML)/sitemap/a8; type=int[0-99]; label= depth of the sitemap pagetree: This setting determines how many pagelevels the pagetree may have at a max.
+levels = 99		
+
+#cat=Sitemap (XML)/sitemap/a9; type=options[no priority=0,CREATE=1]; label= create <priority> tag in sitemap: If set to 'CREATE', a priority tag will be inserted into each <url> tag according to the priority settings on the page. defaults to 'INCLUDE'
+includepriority = 1
+
 
 #--------------------------------------------------------
 

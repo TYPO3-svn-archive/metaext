@@ -412,7 +412,8 @@ plugin.tx_metaext_config {
 
 
 ### some of the targets are still hardcoded in the setup for css-styled-content, so this fixes
-### them too. the values still come from the constants from csc. 
+### them too. the values still comes from the constants from css-styled-content
+### (see constant editor: CONTENT and ADVANCED). 
 
 config.intTarget = {$PAGE_TARGET}
 config.extTarget = {styles.content.links.extTarget}
@@ -422,6 +423,92 @@ tt_content.uploads.20.linkProc.target = {styles.content.links.extTarget}
 
 ################################################################################
 ### CONFIG END #################################################################
+################################################################################
+
+
+################################################################################
+
+
+################################################################################
+### SITEMAP START ##############################################################
+################################################################################
+
+
+includeLibs.tx_metaext_sitemap = EXT:metaext/lib/class.tx_metaext_sitemap.php
+
+plugin.tx_metaext_sitemap >
+plugin.tx_metaext_sitemap = PAGE
+plugin.tx_metaext_sitemap {
+	typeNum = {$plugin.tx_metaext_sitemap.typenum}
+	config.disableAllHeaderCode = 1
+	config.renderCharset = UTF-8
+	config.xmlprologue = xml_10
+	config.additionalHeaders = Content-type: text/xml
+	10 = USER
+	10{ 
+		userFunc = tx_metaext_sitemap->createSitemap
+		showhiddeninmenu = {$plugin.tx_metaext_sitemap.showhiddeninmenu}
+		showhiddenpages = {$plugin.tx_metaext_sitemap.showhiddenpages}
+		showsearchexcluded	= {$plugin.tx_metaext_sitemap.showsearchexcluded}
+		excludeifrobots	= {$plugin.tx_metaext_sitemap.excludeifrobots}
+		excludeshortcuts = {$plugin.tx_metaext_sitemap.excludeshortcuts}
+		startuid = {$plugin.tx_metaext_sitemap.startuid}
+		levels = {$plugin.tx_metaext_sitemap.levels}
+		includepriority = {$plugin.tx_metaext_sitemap.includepriority}
+	}
+}
+
+##################################
+###  reference implementation  ###
+##################################
+/*
+First Off: This feature needs RealURL to be installed and working!
+------------------------------------------------------------------
+
+you can configure a default sitemap with the constant editor,
+then simply add the following to your page template:
+
+eg.:
+
+  mysitemap < plugin.tx_metaext_sitemap
+
+
+you can create as many sitemaps as you like. 
+you need to specify a different typeNum for each
+of them, though.
+you can also overwrite each default setting for 
+each individual sitemap:
+
+eg.:
+
+  mysitemap1 < plugin.tx_metaext_sitemap
+  mysitemap1.typeNum = 1234
+  mysitemap1.10.showhiddenpages = 1
+  mysitemap1.10.startuid = 234
+
+  mysitemap2 < plugin.tx_metaext_sitemap
+  mysitemap2.typeNum = 5005
+  mysitemap2.10.startuid = 40
+  mysitemap2.10.levels = 2
+
+you need to enter the sitemap list into the plugins EM config editor
+in this case you'd enter somethin like that into the field:
+
+  sitemapname.xml:1234, someothersitemapname.xml:5005 
+
+don't forget to clear the config cache after changing settings in the
+plugins extension manager settings.
+
+***********************************/
+
+
+
+
+
+
+
+################################################################################
+### SITEMAP END ################################################################
 ################################################################################
 
 
