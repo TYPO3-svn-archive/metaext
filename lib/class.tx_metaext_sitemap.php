@@ -23,8 +23,10 @@
 ***************************************************************/
 
 /**
- * creates xml sitemap 
- *
+ * creates xml sitemaps, more information see: 
+ * http://www.sitemaps.org/protocol.php
+ * https://www.google.com/webmasters/tools/docs/en/protocol.html
+ * 
  * @author	Michael 'Iggy' Rudolph <info@sensomedia.de>
  * @package	TYPO3
  * @subpackage	tx_metaext
