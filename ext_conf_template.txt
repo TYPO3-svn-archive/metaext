@@ -7,6 +7,9 @@ patch6637 = 0
 # cat=basic/enable; type=boolean; label=disableNoCacheParameter:This turns off the ability to disable caching on several locations. On the page cahing policies, via setting config.no_cache = true or disabling caching inside extensions via set_no_cache(). All these settings will be ignored then. 
 disableNoCacheParameter = 0
 
+# cat=basic/enable; type=string; label=create sitemaps:comma separated list of sitemaps to create (realurl needs to be enabled [cooluri config will follow soon]). see manual for sitemap integration and configuration reference. valid values would be 'sitemap.xml:1234,anothersitemap.xml:2345,...' where the item in front of the colon is the name and behind is the typeNum which you can refer to in your setup. if this field is not empty, also a realurl config will be added. see manual for avoiding possible pitfalls.
+sitemaplist = sitemap.xml:2755 
+
 # cat=basic/chtml; type=boolean; label=Post Processing:Enable the output post processor which can fulfill various tsks like: removing html comments, indenting code, etc.
 postprocessing = 1
 
@@ -30,7 +33,6 @@ removewhitespace = 1
 
 # cat=basic/chtml; type=boolean; label=sort headertags:If post processing is enabled, this feature will sort all the tags in the header so that the more important tags are on top. sorting follows this priority 'base > title > meta > link > style > script > conditional comment'. NOTE: ANY OTHER CONTENT will get REMOVED though. if this is not ok with you, please leave this feature disabled. 
 sortheadertags = 1
-
 
 # cat=basic/chtml; type=boolean; label=indentation:If post processing is enabled, this feature will remove surrounding whitespace and formats the output with a not too complex but nice indentation.. 
 indentation = 1
