@@ -53,21 +53,22 @@ class tx_metaext_sitemap {
 		$GLOBALS['TSFE']->no_cache=1;
 		### no cache for developement purposes -----------------------------------------------------------------------------------
 		
-		
-		### make dem configurable... 
-		$showhiddeninmenu = 0;
-		$showhiddenpages = 0;
-		$showsearchexcluded = 1;
-		$levels = 3;
-		$excludeifrobots = 1;
-		$excludeshortcuts = 1;
-		$startuid = 0;
-		
-		/*
-		debug($this->conf,'conf');
-		debug($params,'params');*/
-		debug($cfg,'cfg');
-		
+		### if true, default false: includes pages even if they are hidden in menu	
+		$showhiddeninmenu 	= $cfg['showhiddeninmenu'] ? $cfg['showhiddeninmenu'] : 0;
+		### if true, default false: includes pages even if they are hidden at all	
+		$showhiddenpages 	= $cfg['showhiddenpages'] ? $cfg['showhiddenpages'] : 0;
+		### if true, default true: includes pages even if they are not in the list of pages to index	
+		$showsearchexcluded	= $cfg['showsearchexcluded'] ? $cfg['showsearchexcluded'] : 0;
+		### max depth of the tree	
+		$levels				= $cfg['levels'];
+		### if true, default true: excludes pages if the robots tag suggests 'noindex'	
+		$excludeifrobots	= $cfg['excludeifrobots'] ? $cfg['excludeifrobots'] : 0;
+		### if true, default true: exclude shortcut pages	
+		$excludeshortcuts	= $cfg['excludeshortcuts'] ? $cfg['excludeshortcuts'] : 0;
+		### the id where to start building a sitemap (if this is a shortcut, the next page down the rootline which isn't a shortcut will be taken as rootpage instead)
+		$startuid			= $cfg['startuid'] ? $cfg['startuid'] : 0;
+		### if true, default true: include priority tag according to the page settings	
+		$includepriority	= $cfg['includepriority'] ? $cfg['includepriority'] : 0;
 		
 			
 		### id of the start page... lets see if it's also the root page 
@@ -113,11 +114,15 @@ class tx_metaext_sitemap {
 			
 			$pagesarray[] = array ( 
 				'loc' => $GLOBALS['TSFE']->cObj->typoLink_URL( array( 'parameter' => $page['row']['uid'] ) ),
-				'lastmod' => date("Y-m-d", ($page['row']['SYS_LASTCHANGED'] ? $page['row']['SYS_LASTCHANGED'] : $page['row']['crdate']) ),
-				### implementation pending
-				###'changefreq' => '',
-				'priority' => $page['row']['tx_metaext_importance']
+				'lastmod' => date("Y-m-d", ($page['row']['SYS_LASTCHANGED'] ? $page['row']['SYS_LASTCHANGED'] : $page['row']['crdate']) )
+
 			);
+			if ($includepriority) {
+				$pagesarray[count($pagesarray)-1]['priority'] = $page['row']['tx_metaext_importance'];
+			}
+
+				### implementation pending
+				###'changefreq' => '',			
 		}
 		
 		### create som propper tags around the values
@@ -186,7 +191,7 @@ class tx_metaext_sitemap {
 		
 		# getting baseUrl(absRefPrefix
 		$domainname = $GLOBALS['TSFE']->baseUrl ? $GLOBALS['TSFE']->baseUrl : $GLOBALS['TSFE']->absRefPrefix;
-		debug ($domainname,'baseurl/absrefprefix');
+		### debug ($domainname,'baseurl/absrefprefix');
 		# checking domain record for requested HTTP_HOST if available.
 		if(empty($domainname)) {
 			$domainrecord = $GLOBALS['TSFE']->findDomainRecord();
@@ -194,14 +199,14 @@ class tx_metaext_sitemap {
 			if($domainrecord) {
 				$row = $GLOBALS['TSFE']->sys_page->getRawRecord('sys_domain', $domainrecord);
 				$domainname = count($row) ? $row['domainName'] : '';
-				debug ($domainname,'domainrecord');
+				### debug ($domainname,'domainrecord');
 			} 
 		}
 		# if no according domain record was found, use the http_host instead
 		if(empty($domainname)) {
 			### as a last resort get at least the http_host
 			$domainname = t3lib_div::getIndpEnv('TYPO3_REQUEST_HOST');
-			debug ($domainname,'TYPO3_REQUEST_HOST');
+			### debug ($domainname,'TYPO3_REQUEST_HOST');
 		}
 		# make it a valid url prefix
 		$domainname = preg_match('/\w+:\/\//i',$domainname) ? $domainname : 'http://'.$domainname;
