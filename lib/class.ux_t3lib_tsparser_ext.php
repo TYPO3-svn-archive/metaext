@@ -57,13 +57,14 @@ class ux_t3lib_tsparser_ext extends t3lib_tsparser_ext	{
 		
 		// EXTENDED Standard categories
 		'site' => Array('Site specific features', 'la'),
-		'page' => Array('Page specific features', '1b'),
-		'urlmgm' => Array('Speaking URL Management', 'lc'),
-		'title' => Array('Title settings', 'ld'),
-		'meta' => Array('Metatag settings', 'le'),
-		'admin' => Array('Administrative settings', 'lf'),
+		'sitemap' => Array('Default Sitemap settings', 'lb'),
+		'page' => Array('Page specific features', '1c'),
+		'urlmgm' => Array('Speaking URL Management', 'ld'),
+		'title' => Array('Title settings', 'le'),
+		'meta' => Array('Metatag settings', 'lf'),
+		'admin' => Array('Administrative settings', 'lg'),
 		// theres a subcat language, but this one sorts underneath the new categories if this is wanted. 
-		'lang' => Array('Site language settings', 'lg'),  
+		'lang' => Array('Site language settings', 'lh'),  
 		
 		// subcategories based on the default content elements
 		'cheader' => Array('Content: \'Header\'', 'ma'),
