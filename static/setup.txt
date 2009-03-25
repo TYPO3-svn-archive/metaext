@@ -499,7 +499,7 @@ in this case you'd enter somethin like that into the field:
 don't forget to clear the config cache after changing settings in the
 plugins extension manager settings.
 
-***********************************/
+*/
 
 
 
