@@ -19,4 +19,31 @@ if ($_EXTCONF['patch6637'] == '1') {
 if ($_EXTCONF['disableNoCacheParameter'] == '1') {
 	$TYPO3_CONF_VARS['FE']['disableNoCacheParameter'] = '1';
 }
+
+### add realurl config for sitemaps 
+### MAKE SURE metaext is loaded AFTER realur! or this won't work
+### -> check $TYPO3_CONF_VARS['EXT']['extList'] in your localconf.php! 
+###
+$sitemaps = $_EXTCONF['sitemaplist'];
+if (!empty($sitemaps)) {
+
+	$realurlconfig = $TYPO3_CONF_VARS['EXTCONF']['realurl'];
+	$map = split(',',$sitemaps);
+
+
+	if( is_array($realurlconfig) && count($map) )	{
+		foreach($map as $idx => $mapvalue) {
+			list($mapname, $typenum ) = split(':',trim($mapvalue));
+			# loosely check if supplied mapname and typenum are valid
+			if (!empty($mapname) && intval($typenum) > 0) {
+				foreach ($realurlconfig as $host => $config) {
+					if ( !is_array($realurlconfig[$host]['fileName']) ) { $realurlconfig[$host]['fileName'] = array(); }
+					$realurlconfig[$host]['fileName']['index'][$mapname]['keyValues']['type'] = intval($typenum);
+				}
+			}
+		};
+		$TYPO3_CONF_VARS['EXTCONF']['realurl'] = $realurlconfig;
+	}
+
+}
 ?>
