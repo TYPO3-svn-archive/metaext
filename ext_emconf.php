@@ -37,6 +37,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'conflicts' => array(
 		),
 		'suggests' => array(
+			'realurl' => '1.5.3-0.0.0',
 		),
 	),
 	'_md5_values_when_last_written' => 'a:19:{s:9:".htaccess";s:4:"cad3";s:9:"ChangeLog";s:4:"2157";s:10:"README.txt";s:4:"ee2d";s:21:"ext_conf_template.txt";s:4:"af93";s:12:"ext_icon.gif";s:4:"5a59";s:17:"ext_localconf.php";s:4:"eddf";s:14:"ext_tables.php";s:4:"7426";s:14:"ext_tables.sql";s:4:"feba";s:16:"locallang_db.xml";s:4:"a428";s:14:"doc/manual.sxw";s:4:"17ef";s:36:"lib/class.tx_metaext_postprocess.php";s:4:"cea2";s:32:"lib/class.tx_metaext_sitemap.php";s:4:"0f8f";s:35:"lib/class.ux_t3lib_tsparser_ext.php";s:4:"8a6f";s:27:"lib/class.ux_tslib_menu.php";s:4:"e650";s:38:"modfunc1/class.tx_metaext_modfunc1.php";s:4:"932f";s:22:"modfunc1/locallang.xml";s:4:"a40c";s:20:"static/constants.txt";s:4:"e202";s:13:"static/lib.ts";s:4:"8e2e";s:16:"static/setup.txt";s:4:"9c36";}',
