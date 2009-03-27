@@ -107,6 +107,8 @@ plugin.tx_metaext_metatags {
 	30.data = page:keywords
 	30.stdWrap.stdWrap >
 	30.required = 1
+	30.stdWrap.if.value = {$plugin.tx_metaext_metatags.showkeywords}
+	30.stdWrap.if.equals = 1
 	30.wrap = <meta name="keywords" content="|" />
 	30.append < plugin.tx_metaext_lib.lf
 
@@ -116,6 +118,8 @@ plugin.tx_metaext_metatags {
 	40.prepend < plugin.tx_metaext_lib.tab
 	40.data = page:description
 	40.required = 1
+	40.stdWrap.if.value = {$plugin.tx_metaext_metatags.showdescription}
+	40.stdWrap.if.equals = 1
 	40.wrap = <meta name="description" content="|" />
 	40.append < plugin.tx_metaext_lib.lf
 
@@ -124,6 +128,8 @@ plugin.tx_metaext_metatags {
 	50.prepend < plugin.tx_metaext_lib.tab
 	50.data = page:abstract
 	50.required = 1
+	50.stdWrap.if.value = {$plugin.tx_metaext_metatags.showabstract}
+	50.stdWrap.if.equals = 1
 	50.stdWrap.trim = 1
 	50.wrap = <meta name="abstract" content="|" />
 	50.append < plugin.tx_metaext_lib.lf
@@ -134,6 +140,8 @@ plugin.tx_metaext_metatags {
 	60.value = {$plugin.tx_metaext_metatags.author}	
 	60.override.field = author
 	60.required = 1
+	60.stdWrap.if.value = {$plugin.tx_metaext_metatags.showauthor}
+	60.stdWrap.if.equals = 1
 	60.stdWrap.trim = 1
 	60.wrap = <meta name="author" content="|" />
 	60.append < plugin.tx_metaext_lib.lf
@@ -144,6 +152,8 @@ plugin.tx_metaext_metatags {
 	70.value = {$plugin.tx_metaext_metatags.publisher}	
 	70.override.field = tx_metaext_copyright
 	70.required = 1
+	70.stdWrap.if.value = {$plugin.tx_metaext_metatags.showpublisher}
+	70.stdWrap.if.equals = 1
 	70.stdWrap.trim = 1
 	70.wrap = <meta name="publisher" content="|" />
 	70.append < plugin.tx_metaext_lib.lf
@@ -154,6 +164,8 @@ plugin.tx_metaext_metatags {
 	80.value = {$plugin.tx_metaext_metatags.copyright}	
 	80.override.field = tx_metaext_publisher
 	80.required = 1
+	80.stdWrap.if.value = {$plugin.tx_metaext_metatags.showcopyright}
+	80.stdWrap.if.equals = 1
 	80.stdWrap.trim = 1
 	80.wrap = <meta name="copyright" content="|" />
 	80.append < plugin.tx_metaext_lib.lf
@@ -164,6 +176,8 @@ plugin.tx_metaext_metatags {
 	90.value = {$plugin.tx_metaext_metatags.email}	
 	90.override.field = email
 	90.required = 1
+	90.stdWrap.if.value = {$plugin.tx_metaext_metatags.showemail}
+	90.stdWrap.if.equals = 1
 	90.stdWrap.trim = 1
 	90.wrap = <meta name="email" content="|" />
 	90.append < plugin.tx_metaext_lib.lf
@@ -229,6 +243,41 @@ plugin.tx_metaext_metatags {
 	130.required = 1
 	130.wrap = <meta name="v1-verification" content="|" />
 	130.append < plugin.tx_metaext_lib.lf
+	
+	### creating <meta name="geo.region" content="region goes here" />
+	140 = TEXT
+	140.prepend < plugin.tx_metaext_lib.tab
+	140.value = {$plugin.tx_metaext_metatags.geo.region}	
+	140.override.field = tx_metaext_georegion
+	140.required = 1
+	140.stdWrap.trim = 1
+	140.wrap = <meta name="geo.region" content="|" />
+	140.append < plugin.tx_metaext_lib.lf
+
+	### creating <meta name="geo.placename" content="placename goes here" />
+	150 = TEXT
+	150.prepend < plugin.tx_metaext_lib.tab
+	150.value = {$plugin.tx_metaext_metatags.geo.placename}	
+	150.override.field = tx_metaext_geoplacename
+	150.required = 1
+	150.stdWrap.trim = 1
+	150.wrap = <meta name="geo.placename" content="|" />
+	150.append < plugin.tx_metaext_lib.lf
+
+	### creating <meta name="geo.position" content="position goes here" />
+	160 = TEXT
+	160.prepend < plugin.tx_metaext_lib.tab
+	160.value = {$plugin.tx_metaext_metatags.geo.position}	
+	160.override.field = tx_metaext_geoposition
+	160.required = 1
+	160.stdWrap.trim = 1
+	160.wrap = <meta name="geo.position" content="|" />
+	160.append < plugin.tx_metaext_lib.lf
+
+	### creating <meta name="ICBM" content="position goes here" />
+	170 < .160
+	170.wrap = <meta name="ICBM" content="|" />
+
 }
 
 

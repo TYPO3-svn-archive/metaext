@@ -124,31 +124,68 @@ appendsitename = 1
 # cat=metatags/title/a6; type=string; label= TITLE - sitename divider string: This is the string which will be prepended to the sitetitle (if applied). by default it's '::' which results in '... :: yoursitename'. 
 sitenamedividerstring = ::
 
+
 #--------------------------------------------------------
 
-# cat=metatags/meta/c1; type=string; label= META author: This is the default content of the 'author' metatag which will be displayed sitewide if filled in here. can be overridden by each pages 'author' tag
+
+# cat=metatags/meta/01; type=string; label= META author: This is the default content of the 'author' metatag which will be displayed sitewide if filled in here. can be overridden by each pages 'author' tag
 author = 
 
-# cat=metatags/meta/c2; type=string; label= META publisher: This is the content of the sitewide 'publisher' metatag. It will be displayed sitewide if filled in here.
-publisher = 
-
-# cat=metatags/meta/c3; type=string; label= META copyright: This is the content of the sitewide 'copyright' metatag. It will be displayed sitewide if filled in here.
-copyright = 2009 by yoursite.com - all parts of the page must not be used without permission of the site owner. 
-
-# cat=metatags/meta/c4; type=string; label= META email: This is the default content of the 'email' metatag which will be displayed sitewide if filled in here. can be overridden by each pages 'email' tag
+# cat=metatags/meta/02; type=string; label= META email: This is the default content of the 'email' metatag which will be displayed sitewide if filled in here. can be overridden by each pages 'email' tag
 email = 
 
-# cat=metatags/meta/c5; type=options[,global=global,local=local,Internal Use=IU]; label= META distribution: You can choose the content of the 'distribution' metatag, which will be displayed if you select a value out of: global (valid for all), local (valid only local or regional), Internal Use (IU = valid for Internal Use only), blank - no tag is generated
+# cat=metatags/meta/03; type=string; label= META copyright: This is the content of the sitewide 'copyright' metatag. It will be displayed sitewide if filled in here. can be overridden by each pages 'copyright' tag
+copyright = 2009 by yoursite.com - all parts of the page must not be used without permission of the site owner. 
+
+# cat=metatags/meta/04; type=string; label= META publisher: This is the content of the sitewide 'publisher' metatag. It will be displayed sitewide if filled in here. can be overridden by each pages 'publisher' tag
+publisher = 
+
+# cat=metatags/meta/05; type=options[,global=global,local=local,Internal Use=IU]; label= META distribution: You can choose the content of the 'distribution' metatag, which will be displayed if you select a value out of: global (valid for all), local (valid only local or regional), Internal Use (IU = valid for Internal Use only), blank - no tag is generated
 distribution =
 
-# cat=metatags/meta/c6; type=options[no robots=0,ALL.FOLLOW=1,index.follow=2,index.nofollow=3,noindex.follow=4,noindex.nofollow=5]; label= META robots: This is the default content of the 'robots' metatag which will be displayed sitewide if filled in here. can be overridden by checkboxes in the pages 'meta' section. Leave empty if you want no default 'robots' tag. 
+# cat=metatags/meta/06; type=options[no robots=0,ALL.FOLLOW=1,index.follow=2,index.nofollow=3,noindex.follow=4,noindex.nofollow=5]; label= META robots: This is the default content of the 'robots' metatag which will be displayed sitewide if filled in here. can be overridden by checkboxes in the pages 'meta' section. Switch to 'no robots' if you want no robots tag to be displayed, as the sitemap generation also can utilize the robots suggestion in the page settings to decide to not include a page if you like.
 robots = 0
-
-# cat=metatags/meta/c7; type=options[no date=0,display date=1]; label= META date: If display date is selected, then the date metatag will be rendered with the last modified date or, if not available, the page creation date. 
-showdate = 0
  
-# cat=metatags/meta/c8; type=string; label= META v1-verification: If you've got a google v1-verification tag, this is the place to enter the hash eg.:PCiRPCiR4tHR4ss4jTZd8E4jDjEJd39dDhE80iiE= .
+# cat=metatags/meta/07; type=string; label= META v1-verification: If you've got a google v1-verification tag, this is the place to enter the hash eg.:PCiRPCiR4tHR4ss4jTZd8E4jDjEJd39dDhE80iiE= .
 v1verification = 
+
+# cat=metatags/meta/08; type=string; label= GEO region: This is the global setting for creating a geo.region metatag if any value is enterd here (page specific values do overrie this global setting, though). enter your region code like 'DE-NW' here. described in ISO_3166-2 (see: http://de.wikipedia.org/wiki/ISO_3166-2).
+geo.region = 
+
+# cat=metatags/meta/09; type=string; label= GEO placename: This is the global setting for creating a geo.placename metatag if any value is enterd here (page specific values do overrie this global setting, though). enter your placename like your city or region here like: 'Köln' or 'Nordrhein-Westfalen'.
+geo.placename = 
+
+# cat=metatags/meta/10; type=string; label= GEO position : This is the global setting for creating a geo.position and ICBM metatag if any value is enterd here (page specific values do overrie this global setting, though). enter your position in the form 'latitude%SEMICOLON%longtitude'. 
+geo.position = 
+
+
+#--------------------------------------------------------
+
+
+# cat=metatags/admin/00; type=options[no keywords metatag=0,create metatag=1]; label= DISABLE keywords metatag: If you don't want the keywords metatag to appear within your metatags even if filled (and maybee used for other purposes), you can choose this here.
+showkeywords = 0
+
+# cat=metatags/admin/01; type=options[no description metatag=0,create metatag=1]; label= DISABLE description metatag: If you don't want the description metatag to appear within your metatags even if filled (and maybee used for other purposes), you can choose this here.
+showdescription = 0
+
+# cat=metatags/admin/02; type=options[no abstract metatag=0,create metatag=1]; label= DISABLE abstract metatag: If you don't want the abstract metatag to appear within your metatags even if filled (and maybee used for other purposes), you can choose this here.
+showabstract = 0
+
+# cat=metatags/admin/03; type=options[no author metatag=0,create metatag=1]; label= DISABLE author metatag: If you don't want the author metatag to appear within your metatags even if filled (and maybee used for other purposes), you can choose this here.
+showauthor = 0
+
+# cat=metatags/admin/04; type=options[no publisher metatag=0,create metatag=1]; label= DISABLE publisher metatag: If you don't want the publisher metatag to appear within your metatags even if filled (and maybee used for other purposes), you can choose this here.
+showpublisher = 0
+
+# cat=metatags/admin/05; type=options[no copyright metatag=0,create metatag=1]; label= DISABLE copyright metatag: If you don't want the copyright metatag to appear within your metatags even if filled (and maybee used for other purposes), you can choose this here.
+showcopyright = 0
+
+# cat=metatags/admin/06; type=options[no email metatag=0,create metatag=1]; label= DISABLE email metatag: If you don't want the email metatag to appear within your metatags even if filled (and maybee used for other purposes), you can choose this here.
+showemail = 0
+
+# cat=metatags/admin/07; type=options[no date metatag=0,display date=1]; label= META date: If display date is selected, then the date metatag will be rendered with the last modified date or, if not available, the page creation date. else no metatag is generated. 
+showdate = 0
+
 
 #--------------------------------------------------------
 
