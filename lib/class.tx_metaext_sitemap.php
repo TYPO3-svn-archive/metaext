@@ -51,9 +51,9 @@ class tx_metaext_sitemap {
 		### check if the sitemap is requested on rootlevel where it belongs, else redirect
 		$this->redirectToRoot();
 		
-		### no cache for developement purposes -----------------------------------------------------------------------------------
+		### no cache during developement stage -----------------------------------------------------------------------------------
 		$GLOBALS['TSFE']->no_cache=1;
-		### no cache for developement purposes -----------------------------------------------------------------------------------
+		### no cache during developement stage -----------------------------------------------------------------------------------
 		
 		### if true, default false: includes pages even if they are hidden in menu	
 		$showhiddeninmenu 	= $cfg['showhiddeninmenu'] ? $cfg['showhiddeninmenu'] : 0;
