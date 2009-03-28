@@ -1,9 +1,11 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
-	die ('Access denied.');
-}
+if (!defined ('TYPO3_MODE')) die ('Access denied.');
+$extconf = unserialize($_EXTCONF);	// unserializing the configuration so we can use it here:
 
-### columns for the page settings
+
+#########################################################
+### additional page columns
+#########################################################
 $default_columns = array (
 	'tx_metaext_alttitle' => array (		
 		'exclude' => 0,		
@@ -76,7 +78,9 @@ $default_columns = array (
 	),
 );
 
-### columns for the language overlay settings
+#########################################################
+### additional language overlay columns
+#########################################################
 $overlay_columns = array (
 	'tx_metaext_alttitle' => array (		
 		'exclude' => 0,		
@@ -90,7 +94,6 @@ $overlay_columns = array (
 	),
 );
 
-
 ### add the columns to the TCA
 
 t3lib_div::loadTCA('pages');
@@ -101,6 +104,38 @@ t3lib_extMgm::addToAllTCAtypes('pages','tx_metaext_copyright, tx_metaext_publish
 t3lib_div::loadTCA('pages_language_overlay');
 t3lib_extMgm::addTCAcolumns('pages_language_overlay', $overlay_columns, 1);
 t3lib_extMgm::addToAllTCAtypes('pages_language_overlay','tx_metaext_alttitle;;;;1-1-1','1,5','after:subtitle');
+
+
+#########################################################
+### additional page TSconfig
+#########################################################
+
+t3lib_extMgm::addPageTSConfig('
+#########################################################
+### TCEFORM changes -> Pages (pages)
+#########################################################
+
+TCEFORM.pages {
+	author.disabled = '.($extconf['hideauthor']).'
+	author_email.disabled = '.($extconf['hideemail']).'
+	abstract.disabled = '.($extconf['hideabstract']).'
+	keywords.disabled = '.($extconf['hidekeywords']).'
+	description.disabled = '.($extconf['hidedescription']).'
+	tx_metaext_alttitle.disabled = '.($extconf['hidealttitle']).'
+	tx_metaext_copyright.disabled = '.($extconf['hidecopyright']).'
+	tx_metaext_publisher.disabled = '.($extconf['hidepublisher']).'
+	tx_metaext_robots.disabled = '.($extconf['hiderobots']).'
+	tx_metaext_importance.disabled = '.($extconf['hideimportance']).'
+}
+TCEFORM.pages_language_overlay {
+	author.disabled = '.($extconf['hideauthor']).'
+	author_email.disabled = '.($extconf['hideemail']).'
+	keywords.disabled = '.($extconf['hidekeywords']).'
+	description.disabled = '.($extconf['hidedescription']).'
+	abstract.disabled = '.($extconf['hideabstract']).'
+	tx_metaext_alttitle.disabled = '.($extconf['hidealttitle']).'
+}
+');
 
 
 ### Metatags Manager backend extension inside the info module
