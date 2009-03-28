@@ -7,6 +7,9 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="pages.tx_metaext_alttitle">Alternative PageTitle</label>
+			<label index="pages.tx_metaext_geoposition">geo.position 'latitude;longtitude' (also used for ICBM)</label>
+			<label index="pages.tx_metaext_georegion">geo.region (region code following ISO_3166-2 (see: http://de.wikipedia.org/wiki/ISO_3166-2)</label>
+			<label index="pages.tx_metaext_geoplacename">geo.placename (lokal attribution like: 'Cologne, NRW'; free text)</label>
 			<label index="pages.tx_metaext_copyright">Copyright</label>
 			<label index="pages.tx_metaext_publisher">Publisher</label>
 			<label index="pages.tx_metaext_robots">Robots crawl advices (index,follow)</label>
@@ -31,6 +34,9 @@
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="pages.tx_metaext_alttitle">Alternativer Seitentitel</label>
+			<label index="pages.tx_metaext_geoposition">geo.position 'latitude;longtitude' (auch für ICBM)</label>
+			<label index="pages.tx_metaext_georegion">geo.region (Regionscode nach ISO_3166-2 (see: http://de.wikipedia.org/wiki/ISO_3166-2)</label>
+			<label index="pages.tx_metaext_geoplacename">geo.placename (lokale Zuordnung, z.B.: 'Köln, NRW'; Freitext)</label>
 			<label index="pages.tx_metaext_copyright">Copyright</label>
 			<label index="pages.tx_metaext_publisher">Herausgeber</label>
 			<label index="pages.tx_metaext_robots">Suchmaschinen Crawlanweisung (index,follow)</label>
