@@ -279,7 +279,46 @@ plugin.tx_metaext_metatags {
 	170.wrap = <meta name="geo.placename" content="|" />
 	170.append < .L.lf
 
+	### creating <meta name="country" content="countryname goes here" />
+	180 = TEXT
+	180.prepend < .L.tab
+	180.value = {$plugin.tx_metaext_metatags.country}	
+	180.required = 1
+	180.stdWrap.trim = 1
+	180.wrap = <meta name="country" content="|" />
+	180.append < .L.lf
 
+	### creating <meta name="state" content="statename goes here" />
+	190 = TEXT
+	190.prepend < .L.tab
+	190.value = {$plugin.tx_metaext_metatags.state}	
+	190.required = 1
+	190.stdWrap.trim = 1
+	190.wrap = <meta name="state" content="|" />
+	190.append < .L.lf
+
+	### creating <meta name="city" content="city goes here" />
+	200 = TEXT
+	200.prepend < .L.tab
+	200.value = {$plugin.tx_metaext_metatags.city}	
+	200.required = 1
+	200.stdWrap.trim = 1
+	200.wrap = <meta name="city" content="|" />
+	200.append < .L.lf
+
+	### creating <meta name="zip" content="zip goes here" />
+	210 = TEXT
+	210.prepend < .L.tab
+	210.value = {$plugin.tx_metaext_metatags.zip}	
+	210.required = 1
+	210.stdWrap.trim = 1
+	210.wrap = <meta name="zip" content="|" />
+	210.append < .L.lf
+
+	
+	
+	
+	
 }
 
 
