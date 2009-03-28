@@ -29,8 +29,10 @@
 
 
 require_once(PATH_t3lib.'class.t3lib_extobjbase.php');
-
-
+require_once(PATH_t3lib.'class.t3lib_pagetree.php');
+require_once(PATH_t3lib.'class.t3lib_recordlist.php');
+require_once(PATH_typo3.'class.db_list.inc');
+require_once(PATH_t3lib.'class.t3lib_extobjbase.php');
 
 /**
  * Module extension (addition to function menu) 'Metatags Manager' for the 'metaext' extension.
@@ -39,41 +41,67 @@ require_once(PATH_t3lib.'class.t3lib_extobjbase.php');
  * @package	TYPO3
  * @subpackage	tx_metaext
  */
-class tx_metaext_modfunc1 extends t3lib_extobjbase {
+class tx_metaext_modfunc1 extends t3lib_extobjbase  {
 
-					/**
-					 * Returns the module menu
-					 *
-					 * @return	Array with menuitems
-					 */
-					function modMenu()	{
-						global $LANG;
+	/**
+	 * Returns the module menu
+	 *
+	 * @return	Array with menuitems
+	 */
+	function modMenu () {
+        global $LANG;
+        $menuArray = array(
+ 			'pages' => array (
+				0 => $LANG->getLL('pages_0'),
+				1 => $LANG->getLL('pages_1')
+			),
+	       	'depth' => array( 
+        		0 => $LANG->getLL('depth_0'),
+        		1 => $LANG->getLL('depth_1'),
+        		2 => $LANG->getLL('depth_2'),
+        		3 => $LANG->getLL('depth_3'),
+        		99 => $LANG->getLL('depth_I')
+        	)
+        );
+		return $menuArray;
+  	}
 
-						return Array (
-							"tx_metaext_modfunc1_check" => "",
-						);
-					}
 
-					/**
-					 * Main method of the module
-					 *
-					 * @return	HTML
-					 */
-					function main()	{
-							// Initializes the module. Done in this function because we may need to re-initialize if data is submitted!
-						global $SOBE,$BE_USER,$LANG,$BACK_PATH,$TCA_DESCR,$TCA,$CLIENT,$TYPO3_CONF_VARS;
+	/**
+	 * MAIN function for page information display 
+	 *
+	 * @return	string		Output HTML for the module.
+	 */
+	function main()	{
+		global $BACK_PATH,$LANG,$SOBE;
 
-						$theOutput.=$this->pObj->doc->spacer(5);
-						$theOutput.=$this->pObj->doc->section($LANG->getLL("title"),"This is to be coded yet... sorry for the inconvenience. the next version will have some functional content in here",0,1);
 
-						$menu=array();
-						$menu[]=t3lib_BEfunc::getFuncCheck($this->pObj->id,"SET[tx_metaext_modfunc1_check]",$this->pObj->MOD_SETTINGS["tx_metaext_modfunc1_check"]).$LANG->getLL("checklabel");
-						$theOutput.=$this->pObj->doc->spacer(5);
-						$theOutput.=$this->pObj->doc->section("Menu",implode(" - ",$menu),0,1);
+		$this->pObj->MOD_SETTINGS['pages_levels']=$this->pObj->MOD_SETTINGS['depth'];		// ONLY for the sake of dblist module which uses this value.
 
-						return $theOutput;
-					}
-				}
+		$h_func = t3lib_BEfunc::getFuncMenu($this->pObj->id,'SET[depth]',$this->pObj->MOD_SETTINGS['depth'],$this->pObj->MOD_MENU['depth'],'index.php');
+		$h_func.= t3lib_BEfunc::getFuncMenu($this->pObj->id,'SET[pages]',$this->pObj->MOD_SETTINGS['pages'],$this->pObj->MOD_MENU['pages'],'index.php');
+
+
+		$theOutput.=$this->pObj->doc->section($LANG->getLL('page_title'),
+			t3lib_BEfunc::cshItem($dblist->descrTable,'pagetree_overview',$GLOBALS['BACK_PATH'],'|<br/>').	// CSH
+				$h_func.
+				"There's no functional content right this moment... this is work in progress",
+			0,
+			1
+		);
+
+		// PAGE INFORMATION
+		if ($this->pObj->pageinfo['uid'])	{
+			$theOutput.=$this->pObj->doc->spacer(10);
+			$theOutput.=$this->pObj->doc->section($LANG->getLL('pageInformation'),$dblist->getPageInfoBox($this->pObj->pageinfo,$this->pObj->CALC_PERMS&2),0,1);
+		}
+		
+		return $theOutput;
+	}
+
+
+
+}
 
 
 
