@@ -10,6 +10,28 @@ disableNoCacheParameter = 0
 # cat=basic/enable; type=string; label=create sitemaps:comma separated list of sitemaps to create (realurl needs to be enabled [cooluri config will follow soon]). see manual for sitemap integration and configuration reference. valid values would be 'sitemap.xml:1234,anothersitemap.xml:2345,...' where the item in front of the colon is the name and behind is the typeNum which you can refer to in your setup. if this field is not empty, also a realurl config will be added. see manual for avoiding possible pitfalls.
 sitemaplist = sitemap.xml:2755 
 
+# cat=basic/enable; type=options[hide author field=1,show author field=0]; label=hide AUTHOR field:you can choose to hide the [author] field in the [metatags] section of the pages module. this is a STANDARD field of Typo3 and myght be used with this extension. NOTE: this only hides the field, the underlying data is left unaffected and will be displayed if configured.
+hideauthor = 0
+# cat=basic/enable; type=options[hide email field=1,show email field=0]; label=hide email field:you can choose to hide the [email] field in the [metatags] section of the pages module. this is a STANDARD field of Typo3 and myght be used with this extension. NOTE: this only hides the field, the underlying data is left unaffected and will be displayed if configured.
+hideemail = 0
+# cat=basic/enable; type=options[hide abstract field=1,show abstract field=0]; label=hide abstract field:you can choose to hide the [abstract] field in the [metatags] section of the pages module. this is a STANDARD field of Typo3 and myght be used with this extension. NOTE: this only hides the field, the underlying data is left unaffected and will be displayed if configured.
+hideabstract = 0
+# cat=basic/enable; type=options[hide keywords field=1,show keywords field=0]; label=hide keywords field:you can choose to hide the [keywords] field in the [metatags] section of the pages module. this is a STANDARD field of Typo3 and myght be used with this extension. NOTE: this only hides the field, the underlying data is left unaffected and will be displayed if configured.
+hidekeywords = 0
+# cat=basic/enable; type=options[hide description field=1,show description field=0]; label=hide description field:you can choose to hide the [description] field in the [metatags] section of the pages module. this is a STANDARD field of Typo3 and myght be used with this extension. NOTE: this only hides the field, the underlying data is left unaffected and will be displayed if configured.
+hidedescription = 0
+# cat=basic/enable; type=options[hide alttitle field=1,show alttitle field=0]; label=hide alttitle field:you can choose to hide the [alttitle] field in the [general] section of the pages module. this is one of NEW the fields that come with this extension. NOTE: this only hides the field, the underlying data is left unaffected and will be displayed if configured.
+hidealttitle = 0
+# cat=basic/enable; type=options[hide copyright field=1,show copyright field=0]; label=hide copyright field:you can choose to hide the [copyright] field in the [metatags] section of the pages module. this is one of NEW the fields that come with this extension. NOTE: this only hides the field, the underlying data is left unaffected and will be displayed if configured.
+hidecopyright = 0
+# cat=basic/enable; type=options[hide publisher field=1,show publisher field=0]; label=hide publisher field:you can choose to hide the [publisher] field in the [metatags] section of the pages module. this is one of NEW the fields that come with this extension. NOTE: this only hides the field, the underlying data is left unaffected and will be displayed if configured.
+hidepublisher = 0
+# cat=basic/enable; type=options[hide robots field=1,show robots field=0]; label=hide robots field:you can choose to hide the [author] field in the [robots] section of the pages module. this is one of NEW the fields that come with this extension. it is possible to also use it as a switch to exclude some sites from beeing included into the sitemap. NOTE: this only hides the field, the underlying data is left unaffected and will be displayed if configured.
+hiderobots = 0
+# cat=basic/enable; type=options[hide importance field=1,show importance field=0]; label=hide IMPORTANCE field:you can choose to hide the [importance] field in the [metatags] section of the pages module. this is one of NEW the fields that come with this extension and it is only needed if you use the sitemap which you can generate with this extension, too. NOTE: this only hides the field, the underlying data is left unaffected and will be displayed if configured.
+hideimportance = 0
+
+
 # cat=basic/chtml; type=boolean; label=Post Processing:Enable the output post processor which can fulfill various tsks like: removing html comments, indenting code, etc.
 postprocessing = 1
 
@@ -43,3 +65,5 @@ indentcurlybraces = 1
 # cat=basic/chtml; type=options[tab=0,2 spaces=1,4 spaces=2,6 spaces=3]; label=indentation character:If indentation is enabled, this is the character used for indentation. chose either the 'tab' character or 2,4, or 6 'space' characters.
 indentationchar = 0
 
+# cat=basic/chtml; type=string; label=Additional pageTyp Values:If you've got other pages configured whose content you want to push through the postprocessor insert the respective pageTyp values as a coma separated list, eg.: 700,3005 (this means: pages with pageTyp=700 or pageTyp=3005 would get postprocessed, too)
+additionalpagetypes = 
