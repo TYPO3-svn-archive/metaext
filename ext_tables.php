@@ -17,6 +17,36 @@ $default_columns = array (
 			'eval' => 'trim',
 		)
 	),
+	'tx_metaext_geoposition' => array (		
+		'exclude' => 0,		
+		'label' => 'LLL:EXT:metaext/locallang_db.xml:pages.tx_metaext_geoposition',		
+		'config' => array (
+			'type' => 'input',	
+			'size' => '15',	
+			'max' => '40',	
+			'eval' => 'trim',
+		)
+	),
+	'tx_metaext_georegion' => array (		
+		'exclude' => 0,		
+		'label' => 'LLL:EXT:metaext/locallang_db.xml:pages.tx_metaext_georegion',		
+		'config' => array (
+			'type' => 'input',	
+			'size' => '10',	
+			'max' => '10',	
+			'eval' => 'trim',
+		)
+	),
+	'tx_metaext_geoplacename' => array (		
+		'exclude' => 0,		
+		'label' => 'LLL:EXT:metaext/locallang_db.xml:pages.tx_metaext_geoplacename',		
+		'config' => array (
+			'type' => 'input',	
+			'size' => '30',	
+			'max' => '80',	
+			'eval' => 'trim',
+		)
+	),
 	'tx_metaext_copyright' => array (		
 		'exclude' => 0,		
 		'label' => 'LLL:EXT:metaext/locallang_db.xml:pages.tx_metaext_copyright',		
@@ -92,18 +122,40 @@ $overlay_columns = array (
 			'eval' => 'trim',
 		)
 	),
+	'tx_metaext_geoplacename' => array (		
+		'exclude' => 0,		
+		'label' => 'LLL:EXT:metaext/locallang_db.xml:pages.tx_metaext_geoplacename',		
+		'config' => array (
+			'type' => 'input',	
+			'size' => '30',	
+			'max' => '80',	
+			'eval' => 'trim',
+		)
+	),
+	'tx_metaext_copyright' => array (		
+		'exclude' => 0,		
+		'label' => 'LLL:EXT:metaext/locallang_db.xml:pages.tx_metaext_copyright',		
+		'config' => array (
+			'type' => 'input',	
+			'size' => '30',	
+			'max' => '80',	
+			'eval' => 'trim',
+		)
+	),
 );
 
 ### add the columns to the TCA
 
+
 t3lib_div::loadTCA('pages');
 t3lib_extMgm::addTCAcolumns('pages',$default_columns,1);
 t3lib_extMgm::addToAllTCAtypes('pages','tx_metaext_alttitle;;;;1-1-1','1,5','after:subtitle');
-t3lib_extMgm::addToAllTCAtypes('pages','tx_metaext_copyright, tx_metaext_publisher, tx_metaext_robots, tx_metaext_importance','1,5','after:description');
+t3lib_extMgm::addToAllTCAtypes('pages','tx_metaext_copyright, tx_metaext_publisher, tx_metaext_robots, tx_metaext_importance, tx_metaext_geoposition, tx_metaext_georegion, tx_metaext_geoplacename','1,5','after:description');
 
 t3lib_div::loadTCA('pages_language_overlay');
 t3lib_extMgm::addTCAcolumns('pages_language_overlay', $overlay_columns, 1);
 t3lib_extMgm::addToAllTCAtypes('pages_language_overlay','tx_metaext_alttitle;;;;1-1-1','1,5','after:subtitle');
+t3lib_extMgm::addToAllTCAtypes('pages_language_overlay','tx_metaext_geoplacename,tx_metaext_copyright','1,5','after:description');
 
 
 #########################################################
@@ -126,6 +178,10 @@ TCEFORM.pages {
 	tx_metaext_publisher.disabled = '.($extconf['hidepublisher']).'
 	tx_metaext_robots.disabled = '.($extconf['hiderobots']).'
 	tx_metaext_importance.disabled = '.($extconf['hideimportance']).'
+	tx_metaext_geoposition.disabled = '.($extconf['hidegeotagfields']).'
+	tx_metaext_georegion.disabled = '.($extconf['hidegeotagfields']).'
+	tx_metaext_geoplacename.disabled = '.($extconf['hidegeotagfields']).'
+	
 }
 TCEFORM.pages_language_overlay {
 	author.disabled = '.($extconf['hideauthor']).'
@@ -134,6 +190,8 @@ TCEFORM.pages_language_overlay {
 	description.disabled = '.($extconf['hidedescription']).'
 	abstract.disabled = '.($extconf['hideabstract']).'
 	tx_metaext_alttitle.disabled = '.($extconf['hidealttitle']).'
+	tx_metaext_geoplacename.disabled = '.($extconf['hidegeotagfields']).'
+	tx_metaext_copyright.disabled = '.($extconf['hidecopyright']).'
 }
 ');
 
