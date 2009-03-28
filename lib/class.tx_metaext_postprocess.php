@@ -39,12 +39,14 @@ class tx_metaext_postprocess {
 	 */
 	function formatOutput(&$params, &$pObj) {
 
-		### only process the main page tyype, no processing for print, rss, etc...
-		if ($GLOBALS['TSFE']->type != 0) {	return;	}
 
 		### get EM config
 		$conf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['metaext']);
 
+		
+		### only process the main page tyype, no processing for print, rss, etc...
+		if ( $GLOBALS['TSFE']->type != 0 && !in_array( $GLOBALS['TSFE']->type, split(',',$conf['additionalpagetypes']) ) ) {	return;	}
+		
 		$u = $conf['processunicode'] ? 'u':'';
 
 		### horizontal cleaning #############################################################
