@@ -37,7 +37,7 @@ hideimportance = 0
 # cat=basic/chtml; type=boolean; label=Post Processing:Enable the output post processor which can fulfill various tsks like: removing html comments, indenting code, etc.
 postprocessing = 1
 
-# cat=basic/chtml; type=boolean; label=Unicode Processing:This switches on the Unicode flag in the case you are using UTF-8 content and only get a white page as result.
+# cat=basic/chtml; type=boolean; label=Unicode Processing:This switches on the Unicode flag for various regular expressions. You should enable this in the case you are using UTF-8 content. If you don't while using UTF-8 you might only get an empty page as result.
 processunicode = 0
 
 # cat=basic/chtml; type=boolean; label=remove ALL html comments:If post processing is enabled, this feature will remove ALL html comments (<!--TYPO3SEARCH_start/end--> and comments inside <script/style> tags and conditional comments will be spared, though).
