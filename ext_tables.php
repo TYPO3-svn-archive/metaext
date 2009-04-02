@@ -157,6 +157,7 @@ t3lib_extMgm::addTCAcolumns('pages_language_overlay', $overlay_columns, 1);
 t3lib_extMgm::addToAllTCAtypes('pages_language_overlay','tx_metaext_alttitle;;;;1-1-1','1,5','after:subtitle');
 t3lib_extMgm::addToAllTCAtypes('pages_language_overlay','tx_metaext_geoplacename,tx_metaext_copyright','1,5','after:description');
 
+t3lib_extMgm::addLLrefForTCAdescr('pages','EXT:metaext/locallang_csh.xml');
 
 #########################################################
 ### additional page TSconfig
