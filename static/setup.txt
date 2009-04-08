@@ -93,7 +93,7 @@ plugin.tx_metaext_metatags {
 	10.stdWrap.prepend < .titletag
 	10.required = 1
 	10.stdWrap.insertData = 1
-	10.htmlSpecialChars = 1
+	10.htmlSpecialChars = 0
 	10.wrap = <title>|</title>
 	10.append < .L.lf
 
