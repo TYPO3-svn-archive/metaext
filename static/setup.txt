@@ -237,12 +237,12 @@ plugin.tx_metaext_metatags {
 	120 >
 	121 >
 	
-	### creating <meta name="v1-verification" content="your google verification code here" />
+	### creating <meta name="verify-v1" content="your google verification code here" />
 	130 = TEXT
 	130.prepend < .L.tab
 	130.value = {$plugin.tx_metaext_metatags.v1verification}
 	130.required = 1
-	130.wrap = <meta name="v1-verification" content="|" />
+	130.wrap = <meta name="verify-v1" content="|" />
 	130.append < .L.lf
 	
 	### creating <meta name="ICBM" content="position goes here" />
