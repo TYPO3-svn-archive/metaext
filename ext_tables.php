@@ -200,7 +200,7 @@ TCEFORM.pages_language_overlay {
 ### Metatags Manager backend extension inside the info module
  
 ### ..... still needs to be coded ;)
-
+/*
 if (TYPO3_MODE == 'BE')	{
 	t3lib_extMgm::insertModuleFunction(
 		'web_info',		
@@ -209,7 +209,7 @@ if (TYPO3_MODE == 'BE')	{
 		'LLL:EXT:metaext/locallang_db.xml:moduleFunction.tx_metaext_modfunc1'
 	);
 }
-
+*/
 
 t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Metaext Config & Metatags');
 ?>
