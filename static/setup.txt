@@ -411,12 +411,8 @@ plugin.tx_metaext_config {
 		# this feature. 
 		# 
 		absRefPrefix = {$plugin.tx_metaext_config.baseURL}
-		
-		# sys_language_mode is set to strict here, because it is the best option to avoid double content or
-		# content in a language the reader probably doesn't know how to read anyway. 
-		#
-		sys_language_mode = strict
 
+		sys_language_mode = {$plugin.tx_metaext_config.sys_language_mode}		
 		
 		spamProtectEmailAddresses = {$plugin.tx_metaext_config.spamProtectEmailAddresses}
 		spamProtectEmailAddresses_atSubst = {$plugin.tx_metaext_config.spamProtectEmailAddresses_atSubst}
@@ -499,6 +495,14 @@ plugin.tx_metaext_config {
 	}
 
 }
+
+### sys_language_mode settings for 'content_fallback'
+[globalVar = LIT:content_fallback = {$plugin.tx_metaext_config.sys_language_mode}]
+plugin.tx_metaext_config.config {
+	sys_language_mode = {$plugin.tx_metaext_config.sys_language_mode};{$plugin.tx_metaext_config.sys_language_fallback_options}
+}
+[global]
+
 
 
 ### some of the targets are still hardcoded in the setup for css-styled-content, so this fixes

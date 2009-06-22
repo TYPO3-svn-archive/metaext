@@ -60,6 +60,12 @@ tx_cooluri_enable = 0
 
 #--------------------------------------------------------
 
+#cat=Site Config/lang/d08; type=options[default,strict,content_fallback,ignore]; label=Language Mode:These are the modes how typo3 deals with language overlays, especially with untranslated content. [default] if a translation of the page is not found a fall back to the default language will be displayed. [strict] an error will be reported if the requested translation does not exist. [content_fallback] the selected language will always be displayed even if the page is not translated (this will keep menus etc. translated). the content on the page can still fall back to another language, defined by the value of the 'Content Fallback Options'
+sys_language_mode = content_fallback
+
+#cat=Site Config/lang/d09; type=type=string; label=Content Fallback Options:If the Language Mode is set to 'content_fallback', this coma separated lists of language id's determines the languages to search for fallback content. translated content is searched for within these languages if there's no content with the requested language available. eg.: assuming '1,0' as fallback options here... request for L=2 - no translated content available, system looks for L=1. if there's also no content then system looks for L=0 which is the default language.
+sys_language_fallback_options = 1,0
+
 #cat=Site Config/lang/d10; type=string; label=Default Language:this is the language for L=0 the default language and the value for the attributes "xml:lang" and "lang" in the <html> tag.
 L1_language=de
 #cat=Site Config/lang/d11; type=string; label=Default Locale All:this is the LC_ALL setting for L=0 the default language
