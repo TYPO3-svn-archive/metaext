@@ -20,6 +20,18 @@ if ($_EXTCONF['disableNoCacheParameter'] == '1') {
 	$TYPO3_CONF_VARS['FE']['disableNoCacheParameter'] = '1';
 }
 
+### pages, who are lacking a translation will be hidden in the page tree by default (rootline, menues etc)
+#	note:
+#	BE Web->Page->Edit Page Properties->Localization settings(Options Tab)->
+#		'Hide page if no translation for current language exists'
+#	changes to:
+#		'Show page even if no translation exists'
+#	i.e. if a page was formerly marked exclusively hidden, it will then be exclusively UNhidden !
+#
+if ($extconf['hideUntranslatedPages']) {
+	$TYPO3_CONF_VARS['FE']['hidePagesIfNotTranslatedByDefault'] = 1;
+}
+
 ### add realurl config for sitemaps 
 ### MAKE SURE metaext is loaded AFTER realur! or this won't work
 ### -> check $TYPO3_CONF_VARS['EXT']['extList'] in your localconf.php! 
