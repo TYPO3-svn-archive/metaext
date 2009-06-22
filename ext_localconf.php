@@ -58,4 +58,8 @@ if (!empty($sitemaps)) {
 	}
 
 }
+
+### adding the additional overlay fields to the configuration
+$GLOBALS['TYPO3_CONF_VARS']['FE']['pageOverlayFields'] .= ',tx_metaext_geoplacename,tx_metaext_copyright,tx_metaext_alttitle';
+
 ?>
