@@ -2,7 +2,7 @@
 # Table structure for table 'pages'
 #
 CREATE TABLE pages (
-	tx_metaext_alttitle varchar(80) DEFAULT '' NOT NULL,
+	tx_metaext_alttitle varchar(120) DEFAULT '' NOT NULL,
 	tx_metaext_geoposition varchar(40) DEFAULT '' NOT NULL,
 	tx_metaext_georegion varchar(10) DEFAULT '' NOT NULL,
 	tx_metaext_geoplacename varchar(80) DEFAULT '' NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE pages (
 # Table structure for table 'pages_language_overlay'
 #
 CREATE TABLE pages_language_overlay (
-	tx_metaext_alttitle varchar(80) DEFAULT '' NOT NULL,
+	tx_metaext_alttitle varchar(120) DEFAULT '' NOT NULL,
 	tx_metaext_geoplacename varchar(80) DEFAULT '' NOT NULL,
 	tx_metaext_copyright varchar(80) DEFAULT '' NOT NULL,
 );
