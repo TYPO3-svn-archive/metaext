@@ -35,16 +35,12 @@ plugin.tx_metaext_metatags {
 			wrap = | 
 			noBlur = 1
 			NO {
-				wrapItemAndSub = |*| | {$plugin.tx_metaext_metatags.rootlinedividerstring} |*||	
+				wrapItemAndSub = |*| | {$plugin.tx_metaext_metatags.rootlinedividerstring} |*| |
 				stdWrap.noTrimWrap = | | |
 				doNotLinkIt=1
 			} 
-			CUR < .NO
-			CUR = 1
-			CUR {
-				wrapItemAndSub = |*| | {$plugin.tx_metaext_metatags.rootlinedividerstring} |*||	
-			}
 		}
+		stdWrap.trim = 1
 	}
 
 	### assemble the titletag 
@@ -74,6 +70,7 @@ plugin.tx_metaext_metatags {
 		3.if.isTrue = {$plugin.tx_metaext_metatags.fullrootline}
 		3.if.negate = 1
 		3.data = field:title 
+		3.trim = 1
 		
 		### append ' :: sitename' 
 		### not that good for multidomain... maybe: TSFE:tmpl|sitetitle   TODO: need to check the config for alternative sitename
@@ -315,11 +312,15 @@ plugin.tx_metaext_metatags {
 	210.wrap = <meta name="zip" content="|" />
 	210.append < .L.lf
 
-	
-	
-	
-	
 }
+### using abstract as fallback for description metatag (if selected in constants), but only if the abstract metatag is disabled
+[globalVar = LIT:1 = {$plugin.tx_metaext_metatags.useabstract_ifnodescription}] 
+	plugin.tx_metaext_metatags.40.data = page:description // page:abstract
+[globalVar = LIT:1 = {$plugin.tx_metaext_metatags.showabstract}] 
+	plugin.tx_metaext_metatags.40.data = page:description
+[global]
+
+
 
 
 ################################################################################
