@@ -205,7 +205,7 @@ showcopyright = 0
 # cat=metatags/admin/36; type=options[no metatag=0,show PUBLISHER=1]; label= enable PUBLISHER metatag: You can prevent the PUBLISHER metatag to appear within your metatags even if filled (and maybee used for other purposes) if you disable it here (which is by default).
 showpublisher = 0
 
-# cat=metatags/admin/37; type=options[no metatag=0,show DATE=1]; label= enable DATE metatag: If [display date] is selected, then the DATE metatag will be rendered with the last modified date or - if not available - the page creation date. You can also choose to not display a DATE metatag, which is the default.
+# cat=metatags/admin/37; type=options[no metatag=0,show DATE=1]; label= enable DATE metatag: If [show date] is selected, then the DATE metatag will be rendered with the last modified date or - if not available - the page creation date. You can also choose to not display a DATE metatag, which is the default.
 showdate = 0
 
 
