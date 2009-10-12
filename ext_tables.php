@@ -118,7 +118,7 @@ $overlay_columns = array (
 		'config' => array (
 			'type' => 'input',	
 			'size' => '30',	
-			'max' => '80',	
+			'max' => '120',	
 			'eval' => 'trim',
 		)
 	),
