@@ -152,7 +152,7 @@ distribution =
 # cat=metatags/meta/16; type=options[no robots=0,ALL.FOLLOW=1,index.follow=2,index.nofollow=3,noindex.follow=4,noindex.nofollow=5]; label= meta ROBOTS: This is the default content of the ROBOTS metatag which will be displayed sitewide if filled in here. can be overridden by checkboxes in the pages 'meta' section. Switch to 'no robots' if you want no robots tag to be displayed, as the sitemap generation also can utilize the robots suggestion in the page settings to decide to not include a page if you like.
 robots = 0
  
-# cat=metatags/meta/17; type=string; label= meta V1-VERIFICATION: If you've got a google V1-VERIFICATION tag, this is the place to enter the hash eg.:PCiRPCiR4tHR4ss4jTZd8E4jDjEJd39dDhE80iiE= .
+# cat=metatags/meta/17; type=string; label= meta VERIFY-V1: If you've got a google VERIFY-V1 tag, this is the place to enter the hash eg.:PCiRPCiR4tHR4ss4jTZd8E4jDjEJd39dDhE80iiE= .
 v1verification = 
 
 # cat=metatags/meta/18; type=string; label= meta GEO.POSITION : This is the global setting for creating a GEO.POSITION and ICBM metatag if any value is enterd here (page specific values do overrie this global setting, though). enter your position in the form 'latitude%SEMICOLON%longtitude' (see: http://mygeoposition.com/?lang=de)
