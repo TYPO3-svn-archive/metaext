@@ -119,13 +119,31 @@ class tx_metaext_postprocess {
 				'script'=>	'',
 				'!--['	=>	''
 			);
+			
 			$matches = '';
-			preg_match_all( "/<(!--\[|base|title|meta|link|style|script).*?(\]--|\/|\/base|\/title|\/meta|\/link|\/style|\/script)>/is".$u, $headcontent, $matches);
 			
-			$headerline = $matches[0];
-			$headertag = $matches[1];
+			/**********************************************************************
+			* first off, conditional comments are no good style at all.
+			* you better use typo3s browser detecting capabilities to insert
+			* specific stylesheets for IE browsers. 
+			* but due to lots of developers still rely on them i finally
+			* decided to include them properly in the sort header tags process
+			* so they don't get blatantly removed when enabling this feature ;)
+			**********************************************************************/
+			#1st find conditional comments and remove them from headercontent
+			preg_match_all( "/<(!--\[).*?(\]--)>/is".$u, $headcontent, $matches);
+			$headerline_cc = $matches[0];
+			$headertag_cc = $matches[1];
+			$headcontent = str_replace($headerline_cc,'',$headcontent);
 			
-			# and sort them following this priority -> base|title|meta|link|style|script|!--[ (conditional comments)
+			#after that find various head tags in the remaining headercontent: base, title, meta, link, style, script 
+			preg_match_all( "/<(base|title|meta|link|style|script).*?(\/|\/title|\/style|\/script)>/is".$u, $headcontent, $matches);
+	
+			#merge already found conditional comments (if any) and various standard header tags
+			$headerline = array_merge($matches[0],$headerline_cc);
+			$headertag = array_merge($matches[1],$headertag_cc);
+
+			#sort them following this priority -> base|title|meta|link|style|script|!--[ (conditional comments)
 			foreach ($headerline as $idx => $line ) {
 				$headarray[$headertag[$idx]][] = $line;
 			}		
