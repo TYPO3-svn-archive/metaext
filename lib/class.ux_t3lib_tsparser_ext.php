@@ -58,7 +58,7 @@ class ux_t3lib_tsparser_ext extends t3lib_tsparser_ext	{
 		// EXTENDED Standard categories
 		'site' => Array('Site specific features', 'la'),
 		'sitemap' => Array('Default Sitemap settings', 'lb'),
-		'page' => Array('Page specific features', '1c'),
+		'page' => Array('Page specific features', 'lc'),
 		'urlmgm' => Array('Speaking URL Management', 'ld'),
 		'title' => Array('Title settings', 'le'),
 		'meta' => Array('Metatag settings', 'lf'),
