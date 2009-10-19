@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext: "metaext"
 #
-# Auto generated 12-10-2009 19:47
+# Auto generated 19-10-2009 13:36
 #
 # Manual updates:
 # Only the data in the array - anything else is removed by next write.
@@ -29,7 +29,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 1,
 	'lockType' => '',
 	'author_company' => 'sensomedia.de',
-	'version' => '0.5.0',
+	'version' => '0.5.1',
 	'constraints' => array(
 		'depends' => array(
 			'typo3' => '4.2.0-0.0.0',
@@ -40,7 +40,7 @@ $EM_CONF[$_EXTKEY] = array(
 			'realurl' => '1.5.3-0.0.0',
 		),
 	),
-	'_md5_values_when_last_written' => 'a:20:{s:9:".htaccess";s:4:"cad3";s:9:"ChangeLog";s:4:"0064";s:10:"README.txt";s:4:"ee2d";s:21:"ext_conf_template.txt";s:4:"0b04";s:12:"ext_icon.gif";s:4:"5a59";s:17:"ext_localconf.php";s:4:"240d";s:14:"ext_tables.php";s:4:"09b2";s:14:"ext_tables.sql";s:4:"6c42";s:17:"locallang_csh.xml";s:4:"79aa";s:16:"locallang_db.xml";s:4:"1e91";s:14:"doc/manual.sxw";s:4:"5cda";s:36:"lib/class.tx_metaext_postprocess.php";s:4:"96e2";s:32:"lib/class.tx_metaext_sitemap.php";s:4:"c60c";s:35:"lib/class.ux_t3lib_tsparser_ext.php";s:4:"8a6f";s:27:"lib/class.ux_tslib_menu.php";s:4:"e650";s:38:"modfunc1/class.tx_metaext_modfunc1.php";s:4:"984e";s:22:"modfunc1/locallang.xml";s:4:"5e1e";s:20:"static/constants.txt";s:4:"578e";s:13:"static/lib.ts";s:4:"8e2e";s:16:"static/setup.txt";s:4:"9928";}',
+	'_md5_values_when_last_written' => 'a:20:{s:9:".htaccess";s:4:"cad3";s:9:"ChangeLog";s:4:"2fbc";s:10:"README.txt";s:4:"ee2d";s:21:"ext_conf_template.txt";s:4:"0b04";s:12:"ext_icon.gif";s:4:"5a59";s:17:"ext_localconf.php";s:4:"240d";s:14:"ext_tables.php";s:4:"09b2";s:14:"ext_tables.sql";s:4:"6c42";s:17:"locallang_csh.xml";s:4:"79aa";s:16:"locallang_db.xml";s:4:"1e91";s:14:"doc/manual.sxw";s:4:"a5e2";s:36:"lib/class.tx_metaext_postprocess.php";s:4:"b3de";s:32:"lib/class.tx_metaext_sitemap.php";s:4:"c60c";s:35:"lib/class.ux_t3lib_tsparser_ext.php";s:4:"8a6f";s:27:"lib/class.ux_tslib_menu.php";s:4:"e650";s:38:"modfunc1/class.tx_metaext_modfunc1.php";s:4:"984e";s:22:"modfunc1/locallang.xml";s:4:"5e1e";s:20:"static/constants.txt";s:4:"578e";s:13:"static/lib.ts";s:4:"8e2e";s:16:"static/setup.txt";s:4:"9928";}',
 	'suggests' => array(
 	),
 );
