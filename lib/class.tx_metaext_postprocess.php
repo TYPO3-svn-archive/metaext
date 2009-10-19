@@ -77,7 +77,7 @@ class tx_metaext_postprocess {
 				# 
 				# look for whitespace around <!-- and -->, to make sure it isn't the TYPOSEARCH comment, which has to be left alone
 				if ($conf['removetagsinsidescript']){
-					$cleanedmatch = preg_replace( "/(<!--[ |\n]+|[\/]+ -->[ |\n]+)/ism".$u, "", $matcharray[0]);
+					$cleanedmatch = preg_replace( "/(<!--[ |\n]+|[\/]+[ ]?-->[ |\n]+)/ism".$u, "", $matcharray[0]);
 				} else {
 					$cleanedmatch = $matcharray[0];
 				}
@@ -117,6 +117,7 @@ class tx_metaext_postprocess {
 				'link'	=>	'',
 				'style'	=>	'',
 				'script'=>	'',
+				'noscript'=>	'',
 				'!--['	=>	''
 			);
 			
@@ -136,14 +137,21 @@ class tx_metaext_postprocess {
 			$headertag_cc = $matches[1];
 			$headcontent = str_replace($headerline_cc,'',$headcontent);
 			
-			#after that find various head tags in the remaining headercontent: base, title, meta, link, style, script 
-			preg_match_all( "/<(base|title|meta|link|style|script).*?(\/|\/title|\/style|\/script)>/is".$u, $headcontent, $matches);
+			#after that find various selfclosing head tags in the remaining headercontent: base, meta, link 
+			preg_match_all( "/<(base|meta|link).*?\/>/is".$u, $headcontent, $matches);
+			$headerline_st = $matches[0];
+			$headertag_st = $matches[1];
+			$headcontent = str_replace($headerline_st,'',$headcontent);
+
+			#after that find various head tags in the remaining headercontent: title, style, script, noscript 
+			# (indeed noscript isn't the sort of tag which should be placed inside the header at all, but some extensions do use it so i decided to also include it in this list...)
+			preg_match_all( "/<(title|style|script|noscript).*?(\/title|\/style|\/script|\/noscript)>/is".$u, $headcontent, $matches);
 	
 			#merge already found conditional comments (if any) and various standard header tags
-			$headerline = array_merge($matches[0],$headerline_cc);
-			$headertag = array_merge($matches[1],$headertag_cc);
+			$headerline = array_merge(array_merge($matches[0],$headerline_cc), $headerline_st);
+			$headertag = array_merge(array_merge($matches[1],$headertag_cc), $headertag_st);
 
-			#sort them following this priority -> base|title|meta|link|style|script|!--[ (conditional comments)
+			#sort them following this priority -> base|title|meta|link|style|script|noscript|!--[ (conditional comments)
 			foreach ($headerline as $idx => $line ) {
 				$headarray[$headertag[$idx]][] = $line;
 			}		
