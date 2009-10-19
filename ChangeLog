@@ -1,5 +1,6 @@
 2009-03-09 sensomedia.de  <info@sensomedia.de>
 
+0.5.1: in some cases, sorting of script tags could break the script tags content, this is fixed now. even if far from standard, some ext use the <noscript> tag inside the header, so I decided to include it in the list of sortable headertags, too.
 0.5.0: abstract field can now be used as fallback for description (configure in constants). hideuntranslated pages is configurable now (configure in EM). misc bugfixes: htmlentities in title string is possible now. using conditional comments in the header while having headersort/remove html comments turned on works now as expected.
 0.4.0: New fields: geotags. you can hide fields in the page module now. 
 0.3.2: Hotfix small bug
